@@ -1,6 +1,14 @@
 {% extends "kc_template.html" %}
 {% block page_title %} Home {% endblock %}
 
+{% block breadcrumbs %}
+<ol>
+    <li><a href="/home">Home</a></li>
+    <li>Home page</li>
+</ol>
+<h2>Home Page</h2>
+{% endblock %}
+
 {% block page_content %}
     {{ super() }}
 
