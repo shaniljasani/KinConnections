@@ -23,14 +23,14 @@ def login():
         username = request.form.get('inputUsername')
         password = request.form.get('inputPassword')
         
-        error = "yes"
+        error = "Account not found"
 
         if((username == 'kc') and ((password == 'sjff'))):
             error = None
 
         if(error == None):
             session['username'] = username
-            return redirect(url_for('dashboard'))
+            return redirect(url_for('home'))
 
     return render_template('login.html', error = error)
 
