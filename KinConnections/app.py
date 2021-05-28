@@ -30,12 +30,15 @@ def home():
 
 shaniluser = {
   "name": "Shanil Jasani",
-  "title": "Super Cool Dude"
+  "title": "Super Cool Dude",
+  "imageURL": "/shanil.jpg",
+  "linkedinURL": "https://www.linkedin.com/in/shaniljasani/",
+  "bio": "Autem ipsum nam porro sldjfasdjflasjdlfkj rerum. Quis eos dolorem eos itaque inventore commodi labore quia quia. Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim. Voluptatem officia accusantium nesciunt est omnis tempora consectetur dignissimos. Sequi nulla at esse enim cum deserunt eius."
 }
 
 @app.route('/c/<connector_name>')
 def connector_profile(connector_name):
-    return render_template("connector.html", connector=None)
+    return render_template("connector.html", connector=shaniluser)
 
 if __name__ == '__main__':
     app.run(debug=True, host='localhost', port=5000)
