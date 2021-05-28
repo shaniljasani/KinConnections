@@ -1,0 +1,17 @@
+{% extends "kc_template.html" %}
+{% block page_title %} NAME HERE | Connector {% endblock %}
+
+{% block page_content %}
+
+{% if connector %}
+
+{% else %}
+<section class="inner-page pt-4">
+  <div class="container">
+    <div class="alert alert-danger" role="alert">
+      Error: Connector Not Found
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}

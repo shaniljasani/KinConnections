@@ -28,5 +28,14 @@ def index():
 def home():
     return render_template("home.html")
 
+shaniluser = {
+  "name": "Shanil Jasani",
+  "title": "Super Cool Dude"
+}
+
+@app.route('/c/<connector_name>')
+def connector_profile(connector_name):
+    return render_template("connector.html", connector=None)
+
 if __name__ == '__main__':
     app.run(debug=True, host='localhost', port=5000)
