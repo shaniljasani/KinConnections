@@ -1,23 +1,95 @@
+ <!-- TODO add 'I am a Connector/Connectee' -->
+
 {% extends "kc_template.html" %}
-{% block page_title %} Home {% endblock %}
+{% block page_title %} Login {% endblock %}
+
+{% block breadcrumbs %}
+<ol>
+    <li><a href="/home">Home</a></li>
+    <li>Sign Up</li>
+</ol>
+<h2>Sign Up for Kin Connections</h2>
+{% endblock %}
 
 {% block page_content %}
-    {{ super() }}
+{{ super() }}
 
-    <form class="form-signin text-center" method="post">
-        <h1 class="h3 mb-3 font-weight-normal"> Sign Up</h1>
-        <label for="inputUsername" class="sr-only">Username</label>
-        <input type="username" id="inputUsername" name="inputUsername" class="form-control" placeholder="username" required autofocus>
-        <label for="inputEmail" class="sr-only">Email Address</label>
-        <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="user@autocar.com" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="password" required>
-        <div class="mb-4"></div>
-        {% if error is not none %}
-            <label for="error" class="sr-only" style="color:rgb(83, 0, 0);">{{error}}</label>
-            <div class="mb-4" ></div>
-        {% endif %}
-        <button class="btn btn-lg btn-dark btn-block" type="submit">Sign Up</button>
-    </form>
+ <!-- ======= Pricing Section Reuse for Sign Up ======= -->
+ <section id="pricing" class="pricing section-bg wow fadeInUp">
+
+    <div class="container" data-aos="fade-up">
+
+      <!-- <header class="section-header">
+        <h3>Login</h3>
+        <p>Welcome to Kin Connections! Please login below or sign up for a new account.</p>
+      </header> -->
+
+      <div class="row flex-items-xs-middle flex-items-xs-center">
+
+        <!-- Basic Plan  -->
+        <div class="" >
+          <div class="card">
+            <div class="card-block">
+
+                <h4 style="text-align: center;">{% if type is not none %}{{type}}{% endif %} Sign Up</h4>
+                <p>Welcome to Kin Connections! Please sign up for a new account below.</p>
+
+                {% if type is none %}
+                <p style="margin: 0; padding: 0;">I would like to sign up as a...</p>
+                <a href="/signup/connectee"><button type="button" class="btn">Connectee</button></a>
+                <a href="/signup/connector"><button type="button" class="btn">Connector</button></a>
+                {% endif %}
+
+                {% if error is not none %}
+                    <div class="my-3">
+                        <div class="alert alert-danger" role="alert">
+                            Error! {{error}}
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if success is not none %}
+                    <div class="my-3">
+                        <div class="alert alert-success" role="alert">
+                            Success! {{success}}
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if type is not none %}
+                <div class="row justify-content-center">
+                    <div class="col-lg-4">
+                        <div class="form">
+    
+                            <form method="post" role="form" class="form-signin text-center">
+                              <div class="form-group mt-3">
+                                <input type="text" class="form-control" name="inputUsername" id="inputUsername" placeholder="Your Username" required="">
+                              </div>
+                              <div class="form-group mt-3">
+                                <input type="password" class="form-control" name="inputPassword" id="inputPassword" placeholder="Your Password" required="">
+                              </div>
+                             
+                              <div class="text-center mt-4"><button type="submit" class="btn" title="Submit">Submit</button></div>
+                            </form>
+
+              
+                          </div>
+                    </div>
+                </div>
+                {% endif %}
+
+
+
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+  </section><!-- End Pricing Section -->
+
+
 
 {% endblock %}
