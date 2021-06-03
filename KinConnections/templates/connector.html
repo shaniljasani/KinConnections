@@ -35,9 +35,13 @@
               <img src="/static/img/portfolio/portfolio-details-3.jpg" alt="">
             </div> -->
 
+            {% for image in connector['imageURLs'] %}
+
             <div class="swiper-slide">
-              <img src="/static/img/users/{{ connector['imageURL'] }}" alt="{{ connector['name'] }} Profile Picture">
+              <img src="{{ image }}" alt="{{ connector['name'] }} Image">
             </div>
+
+            {% endfor %}
 
           </div>
           <div class="swiper-pagination"></div>

@@ -31,7 +31,7 @@ def home():
 shaniluser = {
   "name": "Shanil Jasani",
   "title": "Super Cool Dude",
-  "imageURL": "/shanil.jpg",
+  "imageURL": "/static/img/users/shanil.jpg",
   "linkedinURL": "https://www.linkedin.com/in/shaniljasani/",
   "bio": "Autem ipsum nam porro sldjfasdjflasjdlfkj rerum. Quis eos dolorem eos itaque inventore commodi labore quia quia. Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim. Voluptatem officia accusantium nesciunt est omnis tempora consectetur dignissimos. Sequi nulla at esse enim cum deserunt eius."
 }
@@ -39,7 +39,7 @@ shaniluser = {
 demoprofile = {
     "name": "Kabir Barday",
     "title": "CEO of OneTrust",
-    "imageURLs": "/kabirbarday.jpg",
+    "imageURLs": ["https://media.bizj.us/view/img/11897004/kabirbardayheadshot1creditpeytonfulford*1200xx4059-2283-0-942.jpg", "/static/img/users/shanil.jpg"],
     "linkedinURL": "https://www.linkedin.com/in/kbarday/",
     "bio": """Kabir is the Founder, President, and CEO of OneTrust. In under five years, Kabir has grown the company into the #1 fastest growing company on the Inc. 500 and category-defining enterprise technology platform to operationalize trust. According to TCV, OneTrust is the fastest growing enterprise software company in history. OneTrust has largely pioneered the trust technology market, has been awarded 150 patents, and acquired 7 companies along the way.
 
