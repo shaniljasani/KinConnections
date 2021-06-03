@@ -70,10 +70,29 @@
         <section id="pricing" style="padding:0;">
           <div class="card">
             <div class="card-block">
-              <a href="#" class="btn">Contact {{connector['name']}}</a>
+              <a href="#connect" class="portfolio-lightbox btn">Contact {{connector['name']}}</a>
             </div>
           </div>
         </section>
+
+        <div id="connect" style="display: none">
+          <div class="inline-inner">
+              <h4 class="text-center">Connect with Kabir Barday</h4>
+              <div class="text-center">
+                  <p>
+                      To connect, use the following text box to send the connector a message!
+                  </p>
+              </div>
+
+              <form>
+                <input type="text" placeholder="Hi! my name is ___" />
+                <input type="submit" />
+              </form>
+
+              <br/><br/><br/>
+              <a class="gtrigger-close" href="#">Close Connection Box</a>
+          </div>
+      </div>
             
       </div>
       
@@ -84,7 +103,7 @@
       <p> {{connector['bio']}} </p>
     </div>
 
-  </div>s
+  </div>
 </section>
 
 
