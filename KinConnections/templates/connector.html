@@ -19,7 +19,7 @@
     <div class="row gy-4">
 
       <!-- Connector Image (Slider) -->
-      <div class="col-lg-8">
+      <div class="col-lg-6">
         <div class="portfolio-details-slider swiper-container">
           <div class="swiper-wrapper align-items-center">
 
@@ -39,6 +39,7 @@
 
             <div class="swiper-slide">
               <img src="{{ image }}" alt="{{ connector['name'] }} Image">
+              <img src="/static/img/users/{{ connector['imageURLs'] }}" alt="{{ connector['name'] }} Profile Picture">
             </div>
 
             {% endfor %}
@@ -49,34 +50,42 @@
       </div>
 
       <!-- Connector Information -->
-      <div class="col-lg-4">
+      <div class="col-lg-6">
         <div class="portfolio-info">
-          <h3>About {{connector['name']}}</h3>
+          <h3> {{connector['name']}}</h3>
           <ul>
             <li><strong>Title</strong>: {{ connector['title']}}</li>
-            <li><strong>Alma Mater</strong>: ASU 2021</li>
+            <li><strong>Education</strong>: 
+              <ol>
+                <li>UT Austin, ECE 2021</li>
+                <li>Harvard, JD 2025</li>
+                <li>School, Degree Year</li>
+              </ol>
+            </li>
             <li><strong>Linkedin URL</strong>: <a href="{{connector['linkedinURL']}}">{{connector['linkedinURL']}}</a></li>
           </ul>
         </div>
-        <div class="portfolio-description">
-          <p> {{connector['bio']}} </p>
-        </div>
-        
+
+
         <!-- using pricing block for connection initiator -->
         <section id="pricing" style="padding:0;">
-                <div class="card">
-                  <div class="card-block">
-                    <a href="#" class="btn">Contact {{connector['name']}}</a>
-                  </div>
-                </div>
+          <div class="card">
+            <div class="card-block">
+              <a href="#" class="btn">Contact {{connector['name']}}</a>
+            </div>
+          </div>
         </section>
-    
+            
       </div>
       
-
     </div>
 
-  </div>
+    <div class="portfolio-description">
+      <h3>About {{connector['name']}}</h3>
+      <p> {{connector['bio']}} </p>
+    </div>
+
+  </div>s
 </section>
 
 

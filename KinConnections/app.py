@@ -55,7 +55,7 @@ He holds a B.S. in Computer Science with a certificate in Entrepreneurship from 
 
 }
 
-@app.route('/c/<connector_name>')
+@app.route('/connector/<connector_name>')
 def connector_profile(connector_name):
     return render_template("connector.html", connector=demoprofile)
 
