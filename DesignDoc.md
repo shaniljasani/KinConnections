@@ -15,6 +15,7 @@
 - `gender` - male/female/non-binary/other/prefer to not share
 - `languages` - Languages you are comfortable with
 - `acknowledgement` - boolean for agreement with code of conduct
+- `user_type` - Connectee or Connector or *Admin*
 
 ### **Connectee**
 - `ge_status` - select which camp(s) you attended

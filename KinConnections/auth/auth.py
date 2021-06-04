@@ -3,21 +3,52 @@ from flask import (Blueprint, flash, g, redirect, render_template, request, sess
 
 auth_bp = Blueprint('auth_bp', __name__)
 
-#used for registering a user
-@auth_bp.route('/signup', methods=('GET', 'POST'))
-def signup():
+# signup - ask user type
+@auth_bp.route('/signup')
+def signup_main():
+    return render_template('signup.html', type=None, error=None, success=None)
+
+# signup - connectee
+@auth_bp.route('/signup/connectee', methods=('GET', 'POST'))
+def signup_connectee():
+    # user already logged in
+    if (session.get('email', None)):
+        return redirect(url_for('home'))
+    
+    # continue with signup process
     error = None
+    success = None
     if request.method == 'POST':
-        username = request.form.get('inputUsername')
-        email = request.form.get('inputEmail')
-        password = request.form.get('inputPassword')
-        return redirect(url_for('auth_bp.login'))            
+        # get fields
+        return render_template('signup.html', type="Connectee", error=error, success=success)    
         
-    return render_template('signup.html')
+    return render_template('signup.html', type="Connectee", error=error, success=success)
+
+
+# signup - connector
+@auth_bp.route('/signup/connector', methods=('GET', 'POST'))
+def signup_connector():
+    # user already logged in
+    if (session.get('email', None)):
+        return redirect(url_for('home'))
+    
+    # continue with signup process
+    error = None
+    success = None
+    if request.method == 'POST':
+        # get fields
+        return render_template('signup.html', type="Connector", error=error, success=success)    
+        
+    return render_template('signup.html', type="Connector", error=error, success=success)
 
 #used for logging in a user
 @auth_bp.route('/login', methods=('GET', 'POST'))
 def login():
+    # user already logged in
+    if (session['username']):
+        return redirect(url_for('home'))
+
+    # login process
     error = None
     if request.method == 'POST':
         email = request.form.get('inputEmail')
