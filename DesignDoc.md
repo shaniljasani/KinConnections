@@ -8,13 +8,17 @@
 - `last_name`
 - `email`
 - `password` - encrypted
-- `dob` - date of birth
+- `dob` - date of birth (everyone 18+)
 - `country_origin` - 126+ options
 - `region_current` - enumerated below
 - `location_current` - string
 - `gender` - male/female/non-binary/other/prefer to not share
 - `languages` - Languages you are comfortable with
 - `acknowledgement` - boolean for agreement with code of conduct
+
+### **Connectee**
+- `ge_status` - select which camp(s) you attended
+- `is_ismaili`
 
 ### **Connectors**
 
@@ -32,18 +36,22 @@
 - `images`
   - upload image(s) 
   - profile picture + action shots @ work
+- `approved` - confirms harrassment training & waiver system
 
 *Filter Connectors with:* Language, Country of Origin, Professional Category, and School
 
 
-**Languages**
+**Languages** 
+# TODO Alphebatize
 - English
 - French
 - Spanish
 - Portuguese
+- Russian
+- Tajiki language
 - Farsi
 - Dari
-- Urdu
+- Urdu / Hindi
 - Gujarati
 - Kutchi
 - Arabic
