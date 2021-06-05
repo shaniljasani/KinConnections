@@ -1,5 +1,9 @@
 import functools
-from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for)
+import os
+
+from airtable import Airtable
+from flask import (Blueprint, flash, g, redirect, render_template, request,
+                   session, url_for)
 
 auth_bp = Blueprint('auth_bp', __name__)
 
@@ -36,6 +40,10 @@ def signup_connector():
     error = None
     success = None
     if request.method == 'POST':
+        userTable = Airtable('appHwa2pMKMmrkTKJ', 'Users', os.environ['AIRTABLE_API_KEY'])
+        email = request.form.get('inputUsername')
+        password = request.form.get('inputPassword')
+        userTable.insert({'email': email, 'password': password})
         # get fields
         return render_template('signup.html', type="Connector", error=error, success=success)    
         
