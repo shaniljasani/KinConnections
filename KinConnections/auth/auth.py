@@ -40,11 +40,14 @@ def signup_connector():
     error = None
     success = None
     if request.method == 'POST':
-        userTable = Airtable('appHwa2pMKMmrkTKJ', 'Users', os.environ['AIRTABLE_API_KEY'])
+        userTable = Airtable('appHwa2pMKMmrkTKJ', os.environ['AIRTABLE_API_KEY'])
+        # get fields
         email = request.form.get('inputUsername')
         password = request.form.get('inputPassword')
-        userTable.insert({'email': email, 'password': password})
-        # get fields
+        # create entry and add to base
+        user_object = {'email': email, 'password': password}
+        userTable.create('Users', user_object)
+        
         return render_template('signup.html', type="Connector", error=error, success=success)    
         
     return render_template('signup.html', type="Connector", error=error, success=success)
@@ -53,7 +56,7 @@ def signup_connector():
 @auth_bp.route('/login', methods=('GET', 'POST'))
 def login():
     # user already logged in
-    if (session['username']):
+    if (session.get('email', None)):
         return redirect(url_for('home'))
 
     # login process
