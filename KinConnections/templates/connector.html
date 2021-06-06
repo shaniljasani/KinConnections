@@ -1,11 +1,11 @@
 {% extends "kc_template.html" %}
-{% block page_title %} NAME HERE | Connector {% endblock %}
+{% block page_title %} {{connector['first_name']}} {{connector['last_name']}} | Connector {% endblock %}
 
 {% block breadcrumbs %}
 <ol>
     <li><a href="/home">Home</a></li>
-    <li><a href="/c">Connectors</a></li>
-    <li>{{connector['name']}}</li>
+    <li><a href="/connectors">Connectors</a></li>
+    <li>{{connector['first_name']}} {{connector['last_name']}}</li>
 </ol>
 <h2>Connector Information and Connection Page</h2>
 {% endblock %}
@@ -23,22 +23,10 @@
         <div class="portfolio-details-slider swiper-container">
           <div class="swiper-wrapper align-items-center">
 
-            <!-- <div class="swiper-slide">
-              <img src="/static/img/portfolio/portfolio-details-1.jpg" alt="">
-            </div>
+            {% for image in connector['images'] %}
 
             <div class="swiper-slide">
-              <img src="/static/img/portfolio/portfolio-details-2.jpg" alt="">
-            </div>
-
-            <div class="swiper-slide">
-              <img src="/static/img/portfolio/portfolio-details-3.jpg" alt="">
-            </div> -->
-
-            {% for image in connector['imageURLs'] %}
-
-            <div class="swiper-slide">
-              <img src="{{ image }}" alt="{{ connector['name'] }} Image">
+              <img src="{{ image }}" alt="Image: {{ image }} ">
             </div>
 
             {% endfor %}
@@ -51,60 +39,134 @@
       <!-- Connector Information -->
       <div class="col-lg-6">
         <div class="portfolio-info">
-          <h3> {{connector['name']}}</h3>
-          <ul>
-            <li><strong>Title</strong>: {{ connector['title']}}</li>
-            <li><strong>Education</strong>: 
-              <ol>
-                <li>UT Austin, ECE 2021</li>
-                <li>Harvard, JD 2025</li>
-                <li>School, Degree Year</li>
-              </ol>
-            </li>
-            <li><strong>Linkedin URL</strong>: <a href="{{connector['linkedinURL']}}">{{connector['linkedinURL']}}</a></li>
-          </ul>
-        </div>
+          
+          <h3><span class="name">{{connector['first_name']}} {{connector['last_name']}}</span>{% if connector['title'] is not none %} <span style="font-weight: 400"><br/>{{ connector['title']}}</span>{% endif %}</h3>
+          
+          <p>
+            {% if connector['location_current'] is not none %} <i class="bi bi-geo-alt-fill m-1"></i> {{ connector['location_current']}}</li> {% endif %}
+            <br/>
+            {% if connector['region_current'] is not none %} <i class="bi bi-flag-fill m-1"></i> {{ connector['region_current']}}</li> {% endif %}
+            <br/>
+            {% if connector['professional_category'] is not none %} 
+              <i class="bi bi-filter-circle-fill m-1"></i> 
+              {% for cat in connector['professional_category'] %}
+                {{ cat }}{{ ", " if not loop.last else "" }}
+              {% endfor %}
+            {% endif %}
+            <br/>
+            {% if connector['languages'] is not none %} 
+            <i class="bi bi-globe2 m-1"></i> 
+              {% for lan in connector['languages'] %}
+                {{ lan }}{{ ", " if not loop.last else "" }}
+              {% endfor %}
+            {% endif %}
+          </p>
+          
+            {% if connector['linkedin'] is not none %} <p><strong>LinkedIn</strong>: <a href="{{connector['linkedin']}}">{{connector['linkedin']}}</a></p> {% endif %}
+          
 
+            {% if connector['bio'] is not none %}
+              <p><strong>More about {{connector['first_name']}}</strong> <br/> {{connector['bio']}} </p>
+            {% endif %}
+          
+        </div>
 
         <!-- using pricing block for connection initiator -->
         <section id="pricing" style="padding:0;">
           <div class="card">
             <div class="card-block">
-              <a href="#connect" class="portfolio-lightbox btn">Contact {{connector['name']}}</a>
+              <a href="#connect" data-height="auto" class="portfolio-lightbox btn">Connect with {{connector['first_name']}} {{connector['last_name']}}</a>
             </div>
           </div>
         </section>
-
-        <div id="connect" style="display: none">
-          <div class="inline-inner">
-              <h4 class="text-center">Connect with Kabir Barday</h4>
-              <div class="text-center">
-                  <p>
-                      To connect, use the following text box to send the connector a message!
-                  </p>
-              </div>
-
-              <form>
-                <input type="text" placeholder="Hi! my name is ___" />
-                <input type="submit" />
-              </form>
-
-              <br/><br/><br/>
-              <a class="gtrigger-close" href="#">Close Connection Box</a>
-          </div>
       </div>
-            
-      </div>
-      
     </div>
-
-    <div class="portfolio-description">
-      <h3>About {{connector['name']}}</h3>
-      <p> {{connector['bio']}} </p>
-    </div>
-
+  </div>
   </div>
 </section>
+
+<hr class="mt-5 mb-5" />
+
+<!-- <div id="connect" style="display: none"> -->
+<div id="connect">
+  <footer id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="form">
+            <h4 style="font-weight: 600;">Connect with {{connector['first_name']}} {{connector['last_name']}}</h4>
+            <p>To connect, use the following text box to send the connector a message! Please ensure you are following the <a>KinConnections Connecting Guidelines</a>. You can also select a message template by clicking the buttons below.</p>
+
+            <form action="loadingBlocker()" method="post" role="form" class="php-email-form">
+              <div class="form-group mt-3">
+                <label for="userSubject" class="mb-2">Subject</label>
+                <input type="text" class="form-control" name="userSubject" id="userSubject" placeholder="Example: Shared passion for development" required="">
+              </div>
+              <div class="form-group mt-3">
+                <label for="userMessage" class="mb-2">Message</label>
+                <textarea class="form-control" name="userMessage" id="userMessage" rows="5" placeholder="Please write your message here" required=""></textarea>
+              </div>
+
+              <div class="my-3">
+                <div id="loadingBlock" style="display: none;" class="loading">Loading</div>
+                <div id="sentMessage" style="display: none;" class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+
+              <div class="text-center"><button type="submit" onclick="loadingBlocker()" title="Send Message">Send Message</button></div>
+            </form>
+
+            <div class="text-center">
+              <br/>
+              <p>Use these buttons to insert an example message in the box above <br/>
+              <span>
+                <button class="btn btn-outline-success" onclick="example1()" title="Example 1">Example 1</button>
+                <button class="btn btn-outline-success" onclick="example2()" title="Example 2">Example 2</button>
+                <button class="btn btn-outline-success" onclick="example3()" title="Example 3">Example 3</button>
+              </span>  </p>
+            </div>
+
+
+          <a class="gtrigger-close" href="#">Close Connection Box</a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  function loadingBlocker(){
+    var x = document.getElementById("loadingBlock");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    }
+  }
+
+  function example1() {
+    var curPos = document.getElementById("userMessage").selectionStart;
+    // console.log(curPos);
+    let x = document.getElementById("userMessage").value;
+    let text_to_insert = "hello my name is shanil and i am a student at _ school studying _ subjects";
+    document.getElementById("userMessage").value = (x.slice(0, curPos) + text_to_insert + x.slice(curPos));
+  }
+
+  function example2() {
+    var curPos = document.getElementById("userMessage").selectionStart;
+    // console.log(curPos);
+    let x = document.getElementById("userMessage").value;
+    let text_to_insert = "I saw that you __ and was interested in that because ____";
+    document.getElementById("userMessage").value = (x.slice(0, curPos) + text_to_insert + x.slice(curPos));
+  }
+
+  function example3() {
+    var curPos = document.getElementById("userMessage").selectionStart;
+    // console.log(curPos);
+    let x = document.getElementById("userMessage").value;
+    let text_to_insert = "I would love to speak with you sometime, I am available at the following times ______";
+    document.getElementById("userMessage").value = (x.slice(0, curPos) + text_to_insert + x.slice(curPos));
+  }
+</script>
 
 
 {% else %}

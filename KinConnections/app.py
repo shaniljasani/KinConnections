@@ -30,24 +30,24 @@ def home():
 
 
 newDemoProfile = {
-    "first_name" : "Kabir",
-    "last_name" : "Barday",
+    "first_name" : "Ali Muhammad",
+    "last_name" : "Joint-LastName",
     "email" : "ceo@kc.com",
     "password" : "demopass",
     "dob" : "37257",
-    "country_origin" : "USA",
-    "region_current" : "USA",
+    "country_origin" : "United States",
+    "region_current" : "United States",
     "location_current" : "Bay Area, CA",
     "gender" : "male",
     "languages" : ["English", "Hindi/Urdu"],
     "acknowledgement" : "TRUE",
     "user_type" : "Connector",
 
-    "title" : None,
+    "title" : "CEO of OneTrust | Educator | Teacher | Strategist",
     "professional_category" : ["Business", "Technology"],
     "education" : {"School0Name" : "UT Austin", "School0Major" : "ECE"},
     "linkedin" : "https://linkedin.com/in/kabir",
-    "bio" : "hi my name is pickles",
+    "bio" : "Kabir is the Founder, President, and CEO of OneTrust. In under five years, Kabir has grown the company into the #1 fastest growing company on the Inc. 500 and category-defining enterprise technology platform to operationalize trust. According to TCV, OneTrust is the fastest growing enterprise software company in history. OneTrust has largely pioneered the trust technology market, has been awarded 150 patents, and acquired 7 companies along the way.",
     "images" : ["/static/img/users/shanil.jpg"],
     "approved" : "TRUE",
 }
