@@ -79,6 +79,12 @@ newDemoProfile2 = {
 
 profiles = [newDemoProfile, newDemoProfile2]
 
+# connector lookup
+@connections_bp.route('/connectors')
+def connectors():
+    # grab all connectors and pass to template
+    # for now all of them
+    return render_template('connectors.html', connectors=profiles)
 
 
 @connections_bp.route('/connectors/<uid>')

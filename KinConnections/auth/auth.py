@@ -45,7 +45,7 @@ def signup_connector():
 @auth_bp.route('/login', methods=('GET', 'POST'))
 def login():
     # user already logged in
-    if (session['username']):
+    if (session.get('email', None)):
         return redirect(url_for('home'))
 
     # login process

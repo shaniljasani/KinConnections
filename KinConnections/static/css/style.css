@@ -1437,6 +1437,13 @@ section {
   border: 1px solid #d9dde6;
 }
 
+#footer .footer-top .footer-newsletter input[type="text"] {
+  border: 0;
+  padding: 6px 8px;
+  width: 65%;
+  border: 1px solid #d9dde6;
+}
+
 #footer .footer-top .footer-newsletter input[type="submit"] {
   background: #7dda56;
   border: 1px solid #7dda56;

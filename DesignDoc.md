@@ -4,6 +4,8 @@
 
 ### **All Users**
 
+
+- `uid` - unique user ID generated at signup
 - `first_name`
 - `last_name`
 - `email`
