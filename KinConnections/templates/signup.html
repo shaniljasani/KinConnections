@@ -376,7 +376,9 @@
                                   <option value="Other">Other</option>
                                 </select>
                               </div>
-                              <label>Connectee Specific</label>
+                              <div class="form-group mt-3">
+                                <h4>Connectee Specific</h4>
+                              </div>
                               <div class="form-group mt-3">
                                 <input type="text" class="form-control" name="input_ge_camp" id="input_ge_camp" placeholder="Insert the GE camps you attended (eg. Location, Year)" required="">
                               </div>
@@ -384,12 +386,53 @@
                                 <label for="input_is_ismaili">Are you Ismaili?</label>
                                 <input type="checkbox" name="input_is_ismaili" id="input_is_ismaili" required="">
                               </div>
-                              <label>Connector Specific</label>
-
+                              <div class="form-group mt-3">
+                                <h4>Connector Specific</h4>
+                              </div>
+                              <div class="form-group mt-3">
+                                <input type="text" class="form-control" name="input_title" id="input_title" placeholder="Insert title" required="">
+                              </div>
+                              <div class="form-group mt-3">
+                                <select id="industry" class="form-control" name="input_industry" id="input_industry" required="">
+                                  <option value="" disabled selected>Industry</option>
+                                  <option value="Arts & Media">Arts & Media</option>
+                                  <option value="Business">Business</option>
+                                  <option value="Engineering">Engineering</option>
+                                  <option value="Architecture">Architecture</option>
+                                  <option value="Health & Medicine">Health & Medicine</option>
+                                  <option value="Human Resources">Human Resources</option>
+                                  <option value="International Relations, Law & Policy">International Relations, Law & Policy</option>
+                                  <option value="Marketing & Sales">Marketing & Sales</option>
+                                  <option value="Non-Profit & Foundation">Non-Profit & Foundation</option>
+                                  <option value="Tourism & Hospitality">Tourism & Hospitality</option>
+                                </select>
+                              </div>
+                              <div class="form-group mt-3">
+                                <input type="text" class="form-control" name="input_education" id="input_education" placeholder="Insert your education (eg. School, Year)" required="">
+                              </div>
+                              <div class="form-group mt-3">
+                                <input type="url" class="form-control" name="input_linkedin" id="input_linkedin" placeholder="Insert your LinkedIn" required="">
+                              </div>
+                              <div class="form-group mt-3">
+                                <textarea name="input_bio" id="input_bio" required="" rows="10" cols="30">Please insert a description about yourself.</textarea>
+                              </div>
+                              <div class="form-group mt-3">
+                                <label for="accept_email"> I would like to receive emails from Kin Connections</label>
+                                <input type="checkbox" name="accept_email" id="accept_email" value="accept_email">
+                              </div>
+                              <div class="form-group mt-3"></div>
+                                <label for="pic_upload">Select a picture to upload:</label>
+                                <input type="file" id="pic_upload" name="pic_upload">
+                              </div>
+                              <div class="form-group mt-3">
+                                <label for="accept_training"> I have read the harassment training and accept the waiver</label><span style="color: red !important; display: inline; float: none;">*</span>
+                                <input type="checkbox" name="accept_training" id="accept_training" value="accept_training">
+                              </div>
                               <div class="form-group mt-3">
                                 <label for="input_acknoledgement"> I accept the terms and conditions of using Kin Connections</label><span style="color: red !important; display: inline; float: none;">*</span>
-                                <input type="checkbox" name="input_acknowledgement" id="input_acknoledgement" value="acknowledgement">
+                                <input type="checkbox" name="input_acknowledgement" id="input_acknowledgement" value="acknowledgement">
                               </div>
+                              
                              
                               <div class="text-center mt-4"><button type="submit" class="btn" title="Submit">Submit</button></div>
                             </form>
