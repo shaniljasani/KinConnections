@@ -4,8 +4,6 @@ from flask import Blueprint, redirect, render_template, request, session
 connections_bp = Blueprint('connections_bp', __name__)
 
 
-
-
 newDemoProfile = {
     "first_name" : "Ali Muhammad",
     "last_name" : "Joint-LastName",
@@ -79,9 +77,18 @@ newDemoProfile2 = {
 
 profiles = [newDemoProfile, newDemoProfile2]
 
+
+# search endpoint redirect
+@connections_bp.route('/search')
+def search():
+    return redirect('/connectors')
+
 # connector lookup
 @connections_bp.route('/connectors')
 def connectors():
+    # ensure user logged in
+    if not (session.get('email', None)):
+        return redirect("/login?error=notSignedIn")
     # grab all connectors and pass to template
     # for now all of them
     return render_template('connectors.html', connectors=profiles)

@@ -44,6 +44,12 @@ def signup_connector():
 #used for logging in a user
 @auth_bp.route('/login', methods=('GET', 'POST'))
 def login():
+    # if you're sent from another page
+    error = request.args.get('error')
+    if error == 'notSignedIn':
+        error = "You must be signed in to view this page"
+        return render_template('login.html', error=error)
+
     # user already logged in
     if (session.get('email', None)):
         return redirect(url_for('home'))
