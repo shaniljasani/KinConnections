@@ -58,11 +58,15 @@
 
                 {% if type is not none %}
                 <div class="row justify-content-center">
-                    <div class="col-lg-4">
+                    <div class="col-lg-5 col-xs-8 col-sm-8 col-md-8">
                         <div class="form">
                             <form method="post" role="form" class="form-signin text-center">
+                              <!-- TODO decide if we want labels or not -->
+                              <!-- TODO remove username lol -->
+                              <!-- TODO do we want to keep "your" in the placeholder? -->
                               <div class="form-group mt-3">
-                                <input type="text" class="form-control" name="input_username" id="input_username" placeholder="Your Username" required="">
+                                <label for="input_username">Please choose a Username</label>
+                                <input type="text" class="form-control" name="input_username" id="input_username" placeholder="Username" required="">
                               </div>
                               <div class="form-group mt-3">
                                 <input type="password" class="form-control" name="input_password" id="input_password" placeholder="Your Password" required="">
@@ -70,15 +74,20 @@
                               <div class="form-group mt-3">
                                 <input type="text" class="form-control" name="input_firstName" id="input_firstname" placeholder="Your First Name" required="">
                               </div>
+                              <!-- TODO figure out last name vs surname and international applicability (American kids probably don't user surname often) -->
                               <div class="form-group mt-3">
                                 <input type="text" class="form-control" name="input_surname" id="input_surname" placeholder="Your Surname" required="">
                               </div>
+                              <!-- TODO add a note that email will be your login -->
+                              <!-- TODO do we want a confirm email field? -->
                               <div class="form-group mt-3">
                                 <input type="email" class="form-control" name="input_email" id="input_email" placeholder="Your E-mail" required="">
                               </div>
+                              <!-- TODO delete this note but I really like this one and how it has the popup date selector! -->
                               <div class="form-group mt-3">
                                 <input type="date" class="form-control" name="input_dob" id="input_dob" placeholder="Your Date of Birth" required="">
                               </div>
+                              <!-- TODO do we want to explain this is your country of origin or no? -->
                               <div class="form-group mt-3">
                                 <select id="nationality" class="form-control" name="input_nationality" id="input_nationality" required="">
                                   <option value="" disabled selected>Nationality</option>
@@ -318,6 +327,7 @@
                                   <option value="Zimbabwe">Zimbabwe</option>
                                 </select>
                               </div>
+                              <!-- TODO do we want to use the phrase "jurisdiction"? -->
                               <div class="form-group mt-3"></div>
                                 <select id="region_current" class="form-control" name="input_region_current" id="input_region_current" required="">
                                   <option value="" disabled selected>Region</option>
@@ -343,6 +353,7 @@
                                   <option value="United States of America">United States of America</option>
                                 </select>
                               </div>
+                              <!-- TODO explanation here for sure, also I don't think we should collect this from the connectees -->
                               <div class="form-group mt-3">
                                 <input type="text" class="form-control" name="input_location_current" id="input_location_current" placeholder="Your Current Location" required="">
                               </div>
@@ -356,6 +367,7 @@
                                   <option value="Prefer not to share">Prefer not to share</option>
                                 </select>
                               </div>
+                              <!-- TODO Jazir can we make these checkboxes? -->
                               <div class="form-group mt-3">
                                 <label for="language">Hold down the Ctrl (windows) or Command (Mac) button to select multiple options.</label>
                                 <select id="language" class="form-control" name="input_language" id="input_language" required="" multiple size="3">
@@ -378,8 +390,9 @@
 
                               {% if type == "Connectee" %}
                               <div class="form-group mt-3">
-                                <h4>Connectee Specific</h4>
+                                <h4>Connectee-specific Questions</h4>
                               </div>
+                              <!-- TODO "have you attended GE camps? Y/N" -> displays question for location, year, position (fac/participant)? -->
                               <div class="form-group mt-3">
                                 <input type="text" class="form-control" name="input_ge_camp" id="input_ge_camp" placeholder="Insert the GE camps you attended (eg. Location, Year)" required="">
                               </div>
@@ -391,11 +404,14 @@
 
                               {% if type == "Connector" %}
                               <div class="form-group mt-3">
-                                <h4>Connector Specific</h4>
+                                <h4>Connector-specific Questions</h4>
                               </div>
+                              <!-- TODO Explain what this field is -->
+                              <!-- TODO rebrand to header? -->
                               <div class="form-group mt-3">
                                 <input type="text" class="form-control" name="input_title" id="input_title" placeholder="Insert title" required="">
                               </div>
+                              <!-- TODO let's make this a multi-select checkbox -->
                               <div class="form-group mt-3">
                                 <select id="industry" class="form-control" name="input_industry" id="input_industry" required="">
                                   <option value="" disabled selected>Industry</option>
@@ -411,23 +427,28 @@
                                   <option value="Tourism & Hospitality">Tourism & Hospitality</option>
                                 </select>
                               </div>
+                              <!-- TODO I think we need to discuss what data structure we want to store this in -->
                               <div class="form-group mt-3">
                                 <input type="text" class="form-control" name="input_education" id="input_education" placeholder="Insert your education (eg. School, Year)" required="">
                               </div>
                               <div class="form-group mt-3">
                                 <input type="url" class="form-control" name="input_linkedin" id="input_linkedin" placeholder="Insert your LinkedIn" required="">
                               </div>
+                              <!-- TODO make this prettier -->
                               <div class="form-group mt-3">
-                                <textarea name="input_bio" id="input_bio" required="" rows="10" cols="30">Please insert a description about yourself.</textarea>
+                                <textarea name="input_bio" id="input_bio" required="" rows="10" cols="40" placeholder="Please tell us a little about yourself (passions, interests, experiences)"></textarea>
                               </div>
+                              <!-- TODO would this be check before or after the text? idk -->
                               <div class="form-group mt-3">
                                 <label for="accept_email"> I would like to receive emails from Kin Connections</label>
                                 <input type="checkbox" name="accept_email" id="accept_email" value="accept_email">
                               </div>
+                              <!-- TODO we would want this to be multiple pictures to upload -->
                               <div class="form-group mt-3"></div>
                                 <label for="pic_upload">Select a picture to upload:</label>
                                 <input type="file" id="pic_upload" name="pic_upload">
                               </div>
+                              <!-- TODO if we want to keep this could we add to DesignDoc.md -->
                               <div class="form-group mt-3">
                                 <label for="accept_training"> I have read the harassment training and accept the waiver</label><span style="color: red !important; display: inline; float: none;">*</span>
                                 <input type="checkbox" name="accept_training" id="accept_training" value="accept_training">
