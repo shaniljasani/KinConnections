@@ -88,7 +88,7 @@ def search():
 def connectors():
     # ensure user logged in
     if not (session.get('email', None)):
-        return redirect("/login?error=notSignedIn")
+        return redirect("/login?error=notSignedIn&next=connections")
     # grab all connectors and pass to template
     # for now all of them
     return render_template('connectors.html', connectors=profiles)
