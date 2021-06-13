@@ -43,7 +43,7 @@ def signup_connector():
     success = None
     if request.method == 'POST':
         # get fields
-        email = request.form.get('inputUsername')
+        email = request.form.get('inputEmail')
         password = request.form.get('inputPassword')       # TODO Add encryption
         # create object for entry
         user_object = {'email': email, 'password': password}
