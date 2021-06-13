@@ -7,3 +7,4 @@ Deployed at:
 **Password**: sjff
 
 ## [Installation and Local Usage](/Installation%20and%20Local%20Usage.md)
+## [Design Document](/DesignDoc.md)

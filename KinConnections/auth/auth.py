@@ -1,5 +1,11 @@
 import functools
-from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for)
+import sys
+
+from flask import (Blueprint, flash, g, redirect, render_template, request,
+                   session, url_for)
+
+sys.path.append("..")
+from db.db_wrapper import db_add
 
 auth_bp = Blueprint('auth_bp', __name__)
 
@@ -37,6 +43,13 @@ def signup_connector():
     success = None
     if request.method == 'POST':
         # get fields
+        email = request.form.get('inputEmail')
+        password = request.form.get('inputPassword')       # TODO Add encryption
+        # create object for entry
+        user_object = {'email': email, 'password': password}
+        # send to db
+        db_add(user_object)
+
         return render_template('signup.html', type="Connector", error=error, success=success)    
         
     return render_template('signup.html', type="Connector", error=error, success=success)
@@ -45,7 +58,7 @@ def signup_connector():
 @auth_bp.route('/login', methods=('GET', 'POST'))
 def login():
     # user already logged in
-    if (session['username']):
+    if (session.get('email', None)):
         return redirect(url_for('home'))
 
     # login process
