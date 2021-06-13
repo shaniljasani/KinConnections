@@ -1,0 +1,69 @@
+{% extends "kc_template.html" %}
+{% block page_title %} Connectors {% endblock %}
+
+{% block breadcrumbs %}
+<ol>
+    <li><a href="/home">Home</a></li>
+    <li>Connectors</li>
+</ol>
+<h2>Connectors List and Search</h2>
+{% endblock %}
+
+{% block page_content %}
+    {{ super() }}
+
+    <section class="inner-page pt-4">
+        <div class="container text-center">
+
+            
+
+            <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio">
+        <div class="container" data-aos="fade-up">
+  
+          <header class="section-header">
+            <h3 class="section-title">Connectors List and Search</h3>
+            <footer id="footer" class="section-bg">
+                <div class="footer-top">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8 col-md-10 col-sm-10">
+                                <div class="footer-newsletter">
+                                    <h4>Search Connector Database</h4>
+                                    <form action="" method="post">
+                                        <input type="text" name="userSearch" placeholder="Search by Name, Language, Location, Profession Category, and School"><input type="submit" value="Search">
+                                    </form>
+                                    </div>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+                </footer><!-- End  Footer -->
+          </header>
+  
+          <div class="row" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-12">
+              <ul id="portfolio-flters">
+                <li data-filter="*" class="filter-active">All</li>
+                <li data-filter=".filter-app">App</li>
+                <li data-filter=".filter-card">Card</li>
+                <li data-filter=".filter-web">Web</li>
+              </ul>
+            </div>
+          </div>
+  
+  
+        </div>
+      </section><!-- End Portfolio Section -->
+
+
+
+        
+        </div>
+    </section>
+
+   
+
+
+
+{% endblock %}
