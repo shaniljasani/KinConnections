@@ -62,8 +62,6 @@
                         <div class="form">
                             <form method="post" role="form" class="form-signin text-center">
                               <!-- TODO decide if we want labels or not -->
-                              <!-- TODO remove username lol -->
-                              <!-- TODO do we want to keep "your" in the placeholder? -->
                               <div class="form-group mt-3">
                                 <input type="password" class="form-control" name="input_password" id="input_password" placeholder="Password" required="">
                               </div>
@@ -72,14 +70,12 @@
                               </div>
                               <!-- TODO figure out last name vs surname and international applicability (American kids probably don't user surname often) -->
                               <div class="form-group mt-3">
-                                <input type="text" class="form-control" name="input_surname" id="input_surname" placeholder="Surname" required="">
+                                <input type="text" class="form-control" name="input_lastNname" id="input_lastName" placeholder="Last Name" required="">
                               </div>
-                              <!-- TODO add a note that email will be your login -->
-                              <!-- TODO do we want a confirm email field? -->
                               <div class="form-group mt-3">
+                                <label for="input_email">Email will be used as your username.</label>
                                 <input type="email" class="form-control" name="input_email" id="input_email" placeholder="E-mail" required="">
                               </div>
-                              <!-- TODO delete this note but I really like this one and how it has the popup date selector! -->
                               <div class="form-group mt-3">
                                 <input type="date" class="form-control" name="input_dob" id="input_dob" placeholder="Date of Birth" required="">
                               </div>
@@ -349,8 +345,9 @@
                                   <option value="United States of America">United States of America</option>
                                 </select>
                               </div>
-                              <!-- TODO explanation here for sure, also I don't think we should collect this from the connectees -->
+                              <!-- TODO I don't think we should collect this from the connectees -->
                               <div class="form-group mt-3">
+                                <label for="input_email">Current location</label>
                                 <input type="text" class="form-control" name="input_location_current" id="input_location_current" placeholder="Current Location" required="">
                               </div>
                               <div class="form-group mt-3">
@@ -365,7 +362,7 @@
                               </div>
                               <!-- TODO Jazir can we make these checkboxes? -->
                               <div class="form-group mt-3">
-                                <label for="language">Hold down the Ctrl (windows) or Command (Mac) button to select multiple options.</label>
+                                <!-- <label for="language">Hold down the Ctrl (windows) or Command (Mac) button to select multiple options.</label>
                                 <select id="language" class="form-control" name="input_language" id="input_language" required="" multiple size="3">
                                   <option value="" disabled selected>Languages you are comfortable with</option>
                                   <option value="English">English</option>
@@ -381,9 +378,35 @@
                                   <option value="Kutchi">Kutchi</option>
                                   <option value="Arabic">Arabic</option>
                                   <option value="Other">Other</option>
-                                </select>
+                                </select> -->
+                                <label>Languages you are comfortable with</label><br>
+                                <input type="checkbox" id="english" name="english" value="English">
+                                <label for="english"> English</label><br>
+                                <input type="checkbox" id="french" name="french" value="French">
+                                <label for="french"> French</label><br>
+                                <input type="checkbox" id="spanish" name="spanish" value="Spanish">
+                                <label for="spanish"> Spanish</label><br>
+                                <input type="checkbox" id="portuguese" name="portuguese" value="Portuguese">
+                                <label for="portuguese"> Portuguese</label><br>
+                                <input type="checkbox" id="russian" name="russian" value="Russian">
+                                <label for="russian"> Russian</label><br>
+                                <input type="checkbox" id="tajiki" name="tajiki" value="Tajiki language">
+                                <label for="tajiki"> Tajiki Language</label><br>
+                                <input type="checkbox" id="farsi" name="farsi" value="Farsi">
+                                <label for="farsi"> Farsi</label><br>
+                                <input type="checkbox" id="dari" name="dari" value="Dari">
+                                <label for="dari"> Dari</label><br>
+                                <input type="checkbox" id="urduHindi" name="urduHindi" value="Urdu/Hindi">
+                                <label for="urduHindi"> Urdu/Hindi</label><br>
+                                <input type="checkbox" id="gujarati" name="gujarati" value="Gujarati">
+                                <label for="gujarati"> Gujarati</label><br>
+                                <input type="checkbox" id="kutchi" name="kutchi" value="Kutchi">
+                                <label for="kutchi"> Kutchi</label><br>
+                                <input type="checkbox" id="arabic" name="arabic" value="Arabic">
+                                <label for="arabic"> Arabic</label><br>
                               </div>
 
+                              <!--TODO are we worrying about Connectee specific anymore?-->
                               {% if type == "Connectee" %}
                               <div class="form-group mt-3">
                                 <h4>Connectee-specific Questions</h4>
@@ -402,13 +425,12 @@
                               <div class="form-group mt-3">
                                 <h4>Connector-specific Questions</h4>
                               </div>
-                              <!-- TODO Explain what this field is -->
-                              <!-- TODO rebrand to header? -->
                               <div class="form-group mt-3">
+                                <label for="language">Formal Title (eg. Dr, Mr, Mrs, Ms)</label><br>
                                 <input type="text" class="form-control" name="input_title" id="input_title" placeholder="Insert title" required="">
                               </div>
-                              <!-- TODO let's make this a multi-select checkbox -->
                               <div class="form-group mt-3">
+                                <!-- 
                                 <select id="industry" class="form-control" name="input_industry" id="input_industry" required="">
                                   <option value="" disabled selected>Industry</option>
                                   <option value="Arts & Media">Arts & Media</option>
@@ -422,6 +444,28 @@
                                   <option value="Non-Profit & Foundation">Non-Profit & Foundation</option>
                                   <option value="Tourism & Hospitality">Tourism & Hospitality</option>
                                 </select>
+                                -->
+                                <label>Industry</label><br>
+                                <input type="checkbox" id="artsmedia" name="artsmedia" value="Arts & Media">
+                                <label for="artsmedia"> Arts & Media</label><br>
+                                <input type="checkbox" id="business" name="business" value="Business">
+                                <label for="business"> Business</label><br>
+                                <input type="checkbox" id="engineering" name="engineering" value="Engineering">
+                                <label for="engineering"> Engineering</label><br>
+                                <input type="checkbox" id="architecture" name="architecture" value="Architecture">
+                                <label for="architecture"> Architecture</label><br>
+                                <input type="checkbox" id="helthmedicine" name="healthmedicine" value="Health & Medicine">
+                                <label for="healthmedicine"> Health & Medicine</label><br>
+                                <input type="checkbox" id="humanresources" name="humenresources" value="Human Resources">
+                                <label for="humanresources"> Human Resources</label><br>
+                                <input type="checkbox" id="internationalrelations" name="internationrelations" value="International Relations, Law & Policy">
+                                <label for="internationalrelations"> International Relations, Law & Policy</label><br>
+                                <input type="checkbox" id="marketingsales" name="marketingsales" value="Marketing & Sales">
+                                <label for="marketingsales"> Marketing & Sales</label><br>
+                                <input type="checkbox" id="nonprofit" name="nonprofit" value="Non-Profit & Foundation">
+                                <label for="nonprofit"> Non-Profit & Foundation</label><br>
+                                <input type="checkbox" id="tourismhospitality" name="tourismhospitality" value="Tourism & Hospitality">
+                                <label for="tourismhospitality"> Tourism & Hospitality</label><br>
                               </div>
                               <!-- TODO I think we need to discuss what data structure we want to store this in -->
                               <div class="form-group mt-3">
@@ -430,19 +474,17 @@
                               <div class="form-group mt-3">
                                 <input type="url" class="form-control" name="input_linkedin" id="input_linkedin" placeholder="Insert your LinkedIn" required="">
                               </div>
-                              <!-- TODO make this prettier -->
                               <div class="form-group mt-3">
-                                <textarea name="input_bio" id="input_bio" required="" rows="10" cols="40" placeholder="Please tell us a little about yourself (passions, interests, experiences)"></textarea>
+                                <textarea name="input_bio" id="input_bio" required="" rows="10" cols="63" placeholder="Please tell us a little about yourself (passions, interests, experiences)"></textarea>
                               </div>
-                              <!-- TODO would this be check before or after the text? idk -->
                               <div class="form-group mt-3">
                                 <label for="accept_email"> I would like to receive emails from Kin Connections</label>
                                 <input type="checkbox" name="accept_email" id="accept_email" value="accept_email">
                               </div>
                               <!-- TODO we would want this to be multiple pictures to upload -->
                               <div class="form-group mt-3"></div>
-                                <label for="pic_upload">Select a picture to upload:</label>
-                                <input type="file" id="pic_upload" name="pic_upload">
+                                <label for="pic_upload">Select pictures to upload:</label>
+                                <input type="file" id="pics" name="pics" multiple>
                               </div>
                               <!-- TODO if we want to keep this could we add to DesignDoc.md -->
                               <div class="form-group mt-3">
