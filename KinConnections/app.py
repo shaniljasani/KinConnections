@@ -34,15 +34,28 @@ def home():
     else:
         return redirect(url_for('login'))
 
+# --------------------------------------------------------
+#       AUTH FUNCTIONS
+# --------------------------------------------------------
+
 # user login page
 @app.route('/login', methods=('GET', 'POST'))
 def login():
+    error = None
+
+    next = request.args.get('next')
+
+    error = request.args.get('error')
+    if error == 'notSignedIn':
+        error = "You must be signed in to view this page"
+
     # user already logged in
     if session.get('email', None):
+        if next:
+            return redirect('/'+next)
         return redirect(url_for('home'))
 
     # login process
-    error = None
     if request.method == 'POST':
         email = request.form.get('inputEmail')
         password = request.form.get('inputPassword')
@@ -55,6 +68,8 @@ def login():
             user_info = login_get_user_info(email)
             session['email'] = user_info['email']
             session['name'] = user_info['name'].lower()
+            if next:
+                return redirect('/'+next)
             return redirect(url_for('index'))
 
     # else return to login page with/without error
@@ -67,6 +82,10 @@ def logout():
     session.clear()
     # redirect to homepage
     return redirect(url_for('index'))
+
+# --------------------------------------------------------
+#       REGISTRATION FUNCTIONS
+# --------------------------------------------------------
 
 # signup - ask user type
 @app.route('/signup')
@@ -118,11 +137,31 @@ def signup_connectee():
         
     return render_template('signup.html', type="Connectee", error=error, success=success)
 
+# --------------------------------------------------------
+#       CONNECTIONS FUNCTIONS
+# --------------------------------------------------------
 
-@app.route('/connector/<connector_name>')
-def connector_profile(connector_name):
-    return render_template("connector.html", connector=get_connector_by_name(connector_name))
+@app.route('/search')
+def search():
+    return redirect(url_for(connectors))
 
+@app.route('/connectors')
+def connectors():
+    # ensure logged in
+    if not session.get('email', None):
+        return redirect("/login?error=notSignedIn&next=connections")
+    # retrieve all connectors and pass to template
+    return render_template("connectors.html", connectors=get_all_connectors())
+
+@app.route('/connectors/<connector_id>')
+def connector_by_id(connector_id):
+    current_connector = get_connector_by_id(connector_id)
+    return connector_profile(current_connector['id'], current_connector['last_name'], current_connector['first_name'])
+
+@app.route('/connectors/<connector_id>/<last_name>/<first_name>')
+def connector_profile(connector_id, last_name, first_name):
+    currentConnector = get_connector_by_id(connector_by_id)
+    return render_template("connector.html", connector=currentConnector) 
 
 if __name__ == '__main__':
     app.run(debug=True, host='localhost', port=5000)
