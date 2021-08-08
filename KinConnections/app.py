@@ -180,7 +180,7 @@ def connector_by_id(connector_id):
 
 @app.route('/connectors/<connector_id>/<last_name>/<first_name>')
 def connector_profile(connector_id, last_name, first_name):
-    currentConnector = get_connector_by_id(connector_by_id)
+    currentConnector = get_connector_by_id(connector_id)
     return render_template("connector.html", connector=currentConnector) 
 
 if __name__ == '__main__':

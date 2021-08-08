@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 load_dotenv(dotenv_path="../.env")
 
 airtable_connectees = Airtable(os.getenv('AIRTABLE_BASE_ID'), 'connectees', os.getenv('AIRTABLE_API_KEY'))
+airtable_connectors = Airtable(os.getenv('AIRTABLE_BASE_ID'), 'connectors', os.getenv('AIRTABLE_API_KEY'))
 
 # --------------------------------------------------------
 #       AUTH FUNCTIONS
@@ -95,11 +96,14 @@ newDemoProfile1 = {
         "approved" : "TRUE",
     }
 
-def get_all_connectors():
-    return [newDemoProfile,newDemoProfile1,newDemoProfile]
-
+def get_all_connectors():    
+    return [ connector['fields'] for connector in airtable_connectors.get_all() ]
+    
+# TODO this could be improved
 def get_connector_by_name(name):
-    return newDemoProfile
+    return airtable_connectors.search('full_name', name)
 
 def get_connector_by_id(id):
-    return newDemoProfile
+    if airtable_connectors.search('id', id):
+        return airtable_connectors.search('id', id)[0]['fields']
+    return None
