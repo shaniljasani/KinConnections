@@ -66,11 +66,11 @@ def login():
         # valid username == no error
         if(error == None):
             user_info = login_get_user_info(email)
-            session['email'] = user_info['email']
-            session['name'] = user_info['name'].lower()
+            for key in user_info.keys():
+                session[key] = user_info[key]
             if next:
                 return redirect('/'+next)
-            return redirect(url_for('index'))
+            return redirect(url_for('home'))
 
     # else return to login page with/without error
     return render_template('login.html', error=error)
@@ -123,13 +123,12 @@ def signup_connectee():
         form_entries['first_name'] = request.form.get('input_first_name')
         form_entries['last_name'] = request.form.get('input_last_name')
         form_entries['dob'] = request.form.get('input_dob')
-        form_entries['nationality'] = request.form.get('input_nationality')
         form_entries['region_current'] = request.form.get('input_region_current')
         form_entries['gender'] = request.form.get('input_gender')
         form_entries['languages'] = request.form.getlist('language')
-        form_entries['attended_ge'] = request.form.get('attended_ge')
+        form_entries['attended_ge'] = bool(request.form.get('attended_ge'))
         form_entries['ge_camps'] = request.form.get('input_ge_camp')
-        form_entries['is_ismaili'] = request.form.get('input_is_ismaili')
+        form_entries['is_ismaili'] = bool(request.form.get('input_is_ismaili'))
         
         success, error = signup_new_connectee(form_entries)
 

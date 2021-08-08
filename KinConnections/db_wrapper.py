@@ -7,39 +7,41 @@ from dotenv import load_dotenv
 
 load_dotenv(dotenv_path="../.env")
 
-airtable = Airtable(os.getenv('AIRTABLE_BASE_ID'), 'users', os.getenv('AIRTABLE_API_KEY'))
+airtable_connectees = Airtable(os.getenv('AIRTABLE_BASE_ID'), 'connectees', os.getenv('AIRTABLE_API_KEY'))
 
 # --------------------------------------------------------
 #       AUTH FUNCTIONS
 # --------------------------------------------------------
 
 def login_auth(email, password):
-    matching_users = airtable.search('email', email)
+    matching_users = airtable_connectees.search('email', email)
     for user in matching_users:
-        if(user['fields']['email'] == email):
-            #user found
-            if(user['fields']['password'] == password):
-            # password match
-                return None
-            # else incorrect
-            else:
-                return "Incorrect password"
+        if(user['fields']['password'] == password):
+        # password match
+            return None
+        # else incorrect
+        else:
+            return "Incorrect password"
     return "Account not found"
 
 def login_get_user_info(email):
-    user = {}
-    user['email'] = email
-    user['name'] = 'Shanil'
-    return user
+    matching_users = airtable_connectees.search('email', email)
+    for user in matching_users:
+        return user['fields']
+    return None
 
 # --------------------------------------------------------
 #       REGISTRATION FUNCTIONS
 # --------------------------------------------------------
 
 def signup_new_connectee(form_entries):
+    success = None
+    error = None
+    if airtable_connectees.search('email', form_entries['email']):
+        error = "User with email " + form_entries['email'] + " already exists"
+        return success, error
+    airtable_connectees.insert(form_entries)
     success = "New User Created"
-    error = "User with email " + form_entries['email'] + " already exists"
-
     return success, error
 
 # --------------------------------------------------------
