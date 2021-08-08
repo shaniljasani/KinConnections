@@ -141,6 +141,26 @@ def signup_connectee():
 #       CONNECTIONS FUNCTIONS
 # --------------------------------------------------------
 
+data_filters = {
+    "Arts & Media" : "filter-artsmedia",
+    "Business" : "filter-business",
+    "Engineering" : "filter-engineering",
+    "Architecture" : "filter-architecture",
+    "Health & Medicine" : "filter-healthmedicine",
+    "Human Resources" : "filter-humanresources",
+    "International Relations, Law & Policy" : "filter-irlp",
+    "Marketing & Sales" : "filter-marketingsales",
+    "Non-Profit & Foundation" : "filter-nonprofit",
+    "Tourism & Hospitality" : "filter-tourism"
+}
+
+def build_connector_filters(all_connectors):
+    for connector in all_connectors:
+        connector['professional_category_filters'] = []
+        for category in connector['professional_category']:
+            connector['professional_category_filters'].append(data_filters[category])
+    return all_connectors
+
 @app.route('/search')
 def search():
     return redirect(url_for(connectors))
@@ -151,7 +171,8 @@ def connectors():
     if not session.get('email', None):
         return redirect("/login?error=notSignedIn&next=connections")
     # retrieve all connectors and pass to template
-    return render_template("connectors.html", connectors=get_all_connectors())
+    all_connectors = build_connector_filters(get_all_connectors())
+    return render_template("connectors.html", connectors=all_connectors)
 
 @app.route('/connectors/<connector_id>')
 def connector_by_id(connector_id):
