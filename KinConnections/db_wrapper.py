@@ -1,15 +1,30 @@
 # db_wrapper.py - KinConnections
 # Serves as wrapper for database access (airtable or otherwise)
 
+import os
+from airtable import Airtable
+from dotenv import load_dotenv
+
+load_dotenv(dotenv_path="../.env")
+
+airtable = Airtable(os.getenv('AIRTABLE_BASE_ID'), 'users', os.getenv('AIRTABLE_API_KEY'))
+
 # --------------------------------------------------------
 #       AUTH FUNCTIONS
 # --------------------------------------------------------
 
 def login_auth(email, password):
-    if ((email == 'kc@kc.com') and (password == 'sjff')):
-        return None
-    else:
-        return "account not found or password incorrect"
+    matching_users = airtable.search('email', email)
+    for user in matching_users:
+        if(user['fields']['email'] == email):
+            #user found
+            if(user['fields']['password'] == password):
+            # password match
+                return None
+            # else incorrect
+            else:
+                return "Incorrect password"
+    return "Account not found"
 
 def login_get_user_info(email):
     user = {}
