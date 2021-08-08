@@ -9,7 +9,7 @@
 - `email`
 - `password` - encrypted
 - `dob` - date of birth (everyone 18+)
-- `country_origin` - 126+ options
+- `nationality` - 126+ options
 - `region_current` - enumerated below
 - `location_current` - string
 - `gender` - male/female/non-binary/other/prefer to not share
