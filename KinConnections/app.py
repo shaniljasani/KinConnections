@@ -117,6 +117,9 @@ def signup_connectee():
     error = None
     success = None
     if request.method == 'POST':
+        if not (request.form.get('input_acknowledgement', None)):
+            error = "You must agree to abide by the Code of Conduct"
+            return render_template('signup.html', type="Connectee", error=error, success=success)
         form_entries = {}
         form_entries['email'] = request.form.get('input_email')
         form_entries['password'] = request.form.get('input_password')
