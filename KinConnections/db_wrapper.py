@@ -3,6 +3,7 @@
 
 import os
 from airtable import Airtable
+from datetime import datetime, timedelta
 from dotenv import load_dotenv
 
 load_dotenv(dotenv_path="../.env")
@@ -35,12 +36,23 @@ def login_get_user_info(email):
 #       REGISTRATION FUNCTIONS
 # --------------------------------------------------------
 
+def verify_age(dob_string):
+    today_dt = datetime.today()
+    dob_dt = datetime.strptime(dob_string, "%Y-%m-%d")
+    age = (today_dt - dob_dt) / timedelta(days=365.2425)
+    if age < 18:
+        return "You must be 18 years of age to use KinConnections"
+    return None
+
 def signup_new_connectee(form_entries):
     success = None
     error = None
+    # duplicate email check
     if airtable_connectees.search('email', form_entries['email']):
         error = "User with email " + form_entries['email'] + " already exists"
         return success, error
+    # 18+ check
+    error = verify_age(form_entries['dob'])
     airtable_connectees.insert(form_entries)
     success = "New User Created"
     return success, error
