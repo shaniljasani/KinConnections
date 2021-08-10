@@ -108,8 +108,13 @@ newDemoProfile1 = {
         "approved" : "TRUE",
     }
 
-def get_all_connectors():    
-    return [ connector['fields'] for connector in airtable_connectors.get_all() ]
+def get_all_connectors():
+    all =  [ connector['fields'] for connector in airtable_connectors.get_all() ]
+    all_approved = []
+    for connector in all:
+        if(connector.get('approved', None)):
+            all_approved.append(connector)
+    return all_approved
     
 # TODO this could be improved
 def get_connector_by_name(name):
