@@ -153,14 +153,29 @@ data_filters = {
     "International Relations, Law & Policy" : "filter-irlp",
     "Marketing & Sales" : "filter-marketingsales",
     "Non-Profit & Foundation" : "filter-nonprofit",
-    "Tourism & Hospitality" : "filter-tourism"
+    "Tourism & Hospitality" : "filter-tourism",
+
+    "Arabic" : "filter-Arabic",
+    "Dari" : "filter-Dari",
+    "English" : "filter-English",
+    "Farsi" : "filter-Farsi",
+    "French" : "filter-French",
+    "Gujarati" : "filter-Gujarati",
+    "Kutchi" : "filter-Kutchi",
+    "Portuguese" : "filter-Portuguese",
+    "Russian" : "filter-Russian",
+    "Spanish" : "filter-Spanish",
+    "Urdu/Hindi" : "filter-Urduhindi"
 }
 
 def build_connector_filters(all_connectors):
     for connector in all_connectors:
         connector['professional_category_filters'] = []
+        connector['language_category_filters'] = []
         for category in connector['professional_category']:
             connector['professional_category_filters'].append(data_filters[category])
+        for language in connector['languages']:
+            connector['language_category_filters'].append(data_filters[language])
     return all_connectors
 
 @app.route('/search')
