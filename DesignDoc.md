@@ -4,22 +4,23 @@
 
 ### **All Users**
 
-- `first_name`
-- `last_name`
+- `id`
 - `email`
 - `password` - encrypted
+- `first_name`
+- `last_name`
 - `dob` - date of birth (everyone 18+)
-- `nationality` - 126+ options
 - `region_current` - enumerated below
 - `location_current` - string
 - `gender` - male/female/non-binary/other/prefer to not share
 - `languages` - Languages you are comfortable with
-- `acknowledgement` - boolean for agreement with code of conduct
-- `user_type` - Connectee or Connector or *Admin*
+<!-- # - `acknowledgement` - boolean for agreement with code of conduct [handled by code] -->
+<!-- # - `user_type` - Connectee or Connector or *Admin* [separate bases] -->
 
 ### **Connectee**
-- `ge_status` - select which camp(s) you attended
-- `is_ismaili`
+- `attended_ge` - yes/no
+- `ge_camps` - open text
+- `is_ismaili` - yes/no (currently not a requirement)
 
 ### **Connectors**
 
@@ -32,8 +33,10 @@
   - URL
 - `bio`
   - Paragraph
-- *Communication Channel*s
-  - *probably an email from our service?*
+- `location`
+  - short text
+<!-- - *Communication Channel*s
+  - *probably an email from our service?* -->
 - `images`
   - upload image(s) 
   - profile picture + action shots @ work
@@ -43,20 +46,17 @@
 
 
 **Languages** 
-# TODO Alphebatize
-- English
-- French
-- Spanish
-- Portuguese
-- Russian
-- Tajiki language
-- Farsi
+- Arabic
 - Dari
-- Urdu / Hindi
+- English
+- Farsi
+- French
 - Gujarati
 - Kutchi
-- Arabic
-- Other
+- Portuguese
+- Russian
+- Spanish
+- Urdu/Hindi
 
 **Professional Category**
 - Arts & Media
@@ -81,7 +81,7 @@
 - India
 - Kenya
 - Madagascar
-- Mosambique
+- Mozambique
 - Pakistan
 - Portugal
 - Syria

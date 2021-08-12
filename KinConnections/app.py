@@ -66,11 +66,11 @@ def login():
         # valid username == no error
         if(error == None):
             user_info = login_get_user_info(email)
-            session['email'] = user_info['email']
-            session['name'] = user_info['name'].lower()
+            for key in user_info.keys():
+                session[key] = user_info[key]
             if next:
                 return redirect('/'+next)
-            return redirect(url_for('index'))
+            return redirect(url_for('home'))
 
     # else return to login page with/without error
     return render_template('login.html', error=error)
@@ -117,19 +117,21 @@ def signup_connectee():
     error = None
     success = None
     if request.method == 'POST':
+        if not (request.form.get('input_acknowledgement', None)):
+            error = "You must agree to abide by the Code of Conduct"
+            return render_template('signup.html', type="Connectee", error=error, success=success)
         form_entries = {}
         form_entries['email'] = request.form.get('input_email')
         form_entries['password'] = request.form.get('input_password')
         form_entries['first_name'] = request.form.get('input_first_name')
         form_entries['last_name'] = request.form.get('input_last_name')
         form_entries['dob'] = request.form.get('input_dob')
-        form_entries['nationality'] = request.form.get('input_nationality')
         form_entries['region_current'] = request.form.get('input_region_current')
         form_entries['gender'] = request.form.get('input_gender')
         form_entries['languages'] = request.form.getlist('language')
-        form_entries['attended_ge'] = request.form.get('attended_ge')
+        form_entries['attended_ge'] = bool(request.form.get('attended_ge'))
         form_entries['ge_camps'] = request.form.get('input_ge_camp')
-        form_entries['is_ismaili'] = request.form.get('input_is_ismaili')
+        form_entries['is_ismaili'] = bool(request.form.get('input_is_ismaili'))
         
         success, error = signup_new_connectee(form_entries)
 
@@ -151,14 +153,29 @@ data_filters = {
     "International Relations, Law & Policy" : "filter-irlp",
     "Marketing & Sales" : "filter-marketingsales",
     "Non-Profit & Foundation" : "filter-nonprofit",
-    "Tourism & Hospitality" : "filter-tourism"
+    "Tourism & Hospitality" : "filter-tourism",
+
+    "Arabic" : "filter-Arabic",
+    "Dari" : "filter-Dari",
+    "English" : "filter-English",
+    "Farsi" : "filter-Farsi",
+    "French" : "filter-French",
+    "Gujarati" : "filter-Gujarati",
+    "Kutchi" : "filter-Kutchi",
+    "Portuguese" : "filter-Portuguese",
+    "Russian" : "filter-Russian",
+    "Spanish" : "filter-Spanish",
+    "Urdu/Hindi" : "filter-Urduhindi"
 }
 
 def build_connector_filters(all_connectors):
     for connector in all_connectors:
         connector['professional_category_filters'] = []
+        connector['language_category_filters'] = []
         for category in connector['professional_category']:
             connector['professional_category_filters'].append(data_filters[category])
+        for language in connector['languages']:
+            connector['language_category_filters'].append(data_filters[language])
     return all_connectors
 
 @app.route('/search')
@@ -181,7 +198,7 @@ def connector_by_id(connector_id):
 
 @app.route('/connectors/<connector_id>/<last_name>/<first_name>')
 def connector_profile(connector_id, last_name, first_name):
-    currentConnector = get_connector_by_id(connector_by_id)
+    currentConnector = get_connector_by_id(connector_id)
     return render_template("connector.html", connector=currentConnector) 
 
 if __name__ == '__main__':

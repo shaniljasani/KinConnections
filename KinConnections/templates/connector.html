@@ -23,13 +23,17 @@
         <div class="portfolio-details-slider swiper-container">
           <div class="swiper-wrapper align-items-center">
 
-            {% for image in connector['images'] %}
+            <!-- {% for image in connector['images'] %}
 
             <div class="swiper-slide">
               <img src="{{ image }}" alt="Image: {{ image }} ">
             </div>
 
-            {% endfor %}
+            {% endfor %} -->
+
+            <div class="swiper-slide">
+              <img src="{{ connector['images'] }}" alt="Image: {{ connector['images'] }} ">
+            </div>
 
           </div>
           <div class="swiper-pagination"></div>
@@ -43,7 +47,7 @@
           <h3><span class="name">{{connector['first_name']}} {{connector['last_name']}}</span>{% if connector['title'] is not none %} <span style="font-weight: 400"><br/>{{ connector['title']}}</span>{% endif %}</h3>
           
           <p>
-            {% if connector['location_current'] is not none %} <i class="bi bi-geo-alt-fill m-1"></i> {{ connector['location_current']}}</li> {% endif %}
+            {% if connector['location'] is not none %} <i class="bi bi-geo-alt-fill m-1"></i> {{ connector['location']}}</li> {% endif %}
             <br/>
             {% if connector['region_current'] is not none %} <i class="bi bi-flag-fill m-1"></i> {{ connector['region_current']}}</li> {% endif %}
             <br/>
