@@ -1,16 +1,22 @@
 # email_wrapper.py - KinConnections
 # Serves as wrapper for sending connection emails
 
+import os
+from dotenv import load_dotenv
 import smtplib, ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.utils import formataddr
 
-# TODO place in .env
-kc_email = "connections@kc.campconnect.co"
-kc_email_password = 'SjFf2021!'
+# access credentials from .env
+load_dotenv(dotenv_path="../.env")
 
-def send_email(sender_name, sender_email, recipient_name, recipient_email):
+kc_email = os.getenv("KC_EMAIL")
+kc_email_password = os.getenv("KC_EMAIL_PASSWORD")
+kc_email_server = os.getenv("KC_EMAIL_SERVER")
+kc_email_port = int(os.getenv("KC_EMAIL_PORT"))
+
+def send_email_message(sender_name, sender_email, recipient_name, recipient_email, message_subject, message_body):
     
     message = MIMEMultipart("alternative")
 
@@ -50,9 +56,8 @@ def send_email(sender_name, sender_email, recipient_name, recipient_email):
 
     # Create secure connection with server and send email
     context = ssl.create_default_context()
-    with smtplib.SMTP_SSL("box2030.bluehost.com", 465, context=context) as server:
+    with smtplib.SMTP_SSL(kc_email_server, kc_email_port, context=context) as server:
         server.login(kc_email, kc_email_password)
         server.send_message(message)
     
-
-# send_email('Shanil', 'shaniljasani+send@gmail.com', 'Shanil Jasani', 'shaniljasani+receive@gmail.com')
+    return True
