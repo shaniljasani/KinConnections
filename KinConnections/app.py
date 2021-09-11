@@ -4,6 +4,7 @@
 import os
 
 from flask import Flask, render_template, session, request, redirect, url_for
+from flask.helpers import make_response
 from dotenv import load_dotenv
 from db_wrapper import *
 
@@ -185,11 +186,15 @@ def search():
 @app.route('/connectors')
 def connectors():
     # ensure logged in
-    if not session.get('email', None):
+    if session.get('email', None):
         return redirect("/login?error=notSignedIn&next=connections")
     # retrieve all connectors and pass to template
-    all_connectors = build_connector_filters(get_all_connectors())
-    return render_template("connectors.html", connectors=all_connectors)
+    all_connectors = get_all_connectors()
+    all_connectors_with_filters = build_connector_filters(all_connectors)
+
+    resp = make_response(render_template("connectors.html", connectors=all_connectors_with_filters))
+    resp.set_cookie('connectors', str(all_connectors))
+    return resp
 
 @app.route('/connectors/<connector_id>')
 def connector_by_id(connector_id):
