@@ -113,6 +113,7 @@ def get_all_connectors():
     all_approved = []
     for connector in all:
         if(connector.get('approved', None)):
+            connector["education"] = ""
             all_approved.append(connector)
     return all_approved
     
