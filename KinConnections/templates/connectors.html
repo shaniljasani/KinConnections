@@ -65,32 +65,10 @@
               </div>
             </div>
 
-            <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-              <ul id="connectorsList">
-              {% for connector in connectors %}
-              <!-- start repeat -->
-              {# <li>
-                <div class="col-lg-4 col-md-6 portfolio-item {% for professional_filter in connector['professional_category_filters'] %} {{professional_filter}} {% endfor %} {% for language_filter in connector['language_category_filters'] %} {{language_filter}} {% endfor %}">
-                  <div class="portfolio-wrap">
-                    <img src="{{connector['images']}}" class="img-fluid" alt="">
-                    <div class="portfolio-info">
-                      <p style="font-size: 22px; font-weight: 700; font-family: 'Montserrat', sans-serif;">
-                        <a href="{{connector['images']}}" data-gallery="portfolioGallery" title="{{connector.get('first_name', 'Error')}} {{connector.get('last_name', 'Error')}} - {{connector.get('title', 'Error')}}" class="portfolio-lightbox">
-                          {{connector.get('first_name', "Error")}} {{connector.get('last_name', "Error")}}
-                        </a>
-                      </h4>
-                      <!-- <p>{{connector.get('title', "Error")}}</p> -->
-                      <div>
-                        <a href="{{connector['images']}}" data-gallery="portfolioGallery" title="{{connector.get('first_name', 'Error')}} {{connector.get('last_name', 'Error')}} - {{connector.get('title', 'Error')}}" class="link-preview portfolio-lightbox"><i class="bi bi-plus"></i></a>
-                        <a href="/connectors/{{connector['id']}}" class="link-details" title="More Details"><i class="bi bi-link"></i></a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li> #}
-              <!-- end repeat -->
-              {% endfor %}
-              </ul>
+            <div class="row">
+              <div class="col-12">
+                <ul id="connectorsList" class="d-flex flex-row mb-3"></ul>
+              </div>
             </div>
           </div>
         </section>
