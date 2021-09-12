@@ -181,14 +181,13 @@ def build_connector_filters(all_connectors):
 
 @app.route('/search')
 def search():
-    return redirect(url_for(connectors))
+    return redirect(url_for('connectors'))
 
 @app.route('/connectors')
 def connectors():
-    # ensure logged in
-    if session.get('email', None):
+    if not session.get('email'):
         return redirect("/login?error=notSignedIn&next=connections")
-    # retrieve all connectors and pass to template
+
     all_connectors = get_all_connectors()
     all_connectors_with_filters = build_connector_filters(all_connectors)
 
