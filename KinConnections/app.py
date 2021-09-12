@@ -186,7 +186,7 @@ def search():
 @app.route('/connectors')
 def connectors():
     if not session.get('email'):
-        return redirect("/login?error=notSignedIn&next=connections")
+        return redirect("/login?error=notSignedIn&next=connectors")
 
     all_connectors = get_all_connectors()
     all_connectors_with_filters = build_connector_filters(all_connectors)
