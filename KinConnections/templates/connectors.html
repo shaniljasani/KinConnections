@@ -10,116 +10,46 @@
 {% endblock %}
 
 {% block page_content %}
-    {{ super() }}
+  {{ super() }}
 
-    <section class="inner-page pt-4">
-        <div class="container text-center">
-
-            
-
-            <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio">
-        <div class="container" data-aos="fade-up">
-  
-          <header class="section-header">
-            <h3 class="section-title">Connectors List and Search</h3>
-            <hr/>
-            <!-- <footer id="footer" class="section-bg">
-                <div class="footer-top">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8 col-md-10 col-sm-10">
-                                <div class="footer-newsletter">
-                                    <h4>Search Connector Database</h4>
-                                    <form action="" method="post">
-                                        <input type="text" name="userSearch" placeholder="Search by Name, Language, Location, Profession Category, and School"><input type="submit" value="Search">
-                                    </form>
-                                    </div>
-                            </div>
-                            </div>
-                    </div>
-                </div>
-                </footer> <-- End  Footer -->
-          </header>
-  
-          <div class="row" data-aos="fade-up" data-aos-delay="100">
-            <div class="col-lg-12">
-              <h4>Filter by Professional Category</h4>
-              <ul id="portfolio-flters" data-filter-group="professional">
-                <li data-filter="">All Categories</li>
-                <li data-filter=".filter-artsmedia">Arts & Media</li>
-                <li data-filter=".filter-business">Business</li>
-                <li data-filter=".filter-engineering">Engineering</li>
-                <li data-filter=".filter-architecture">Architecture</li>
-                <li data-filter=".filter-healthmedicine">Health & Medicine</li>
-                <li data-filter=".filter-humanresources">Human Resources</li>
-                <li data-filter=".filter-irlp">International Relations, Law & Policy</li>
-                <li data-filter=".filter-marketingsales">Marketing & Sales</li>
-                <li data-filter=".filter-nonprofit">Non-Profit & Foundation</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="row" data-aos="fade-up" data-aos-delay="100">
-            <div class="col-lg-12">
-              <h4>Filter by Language</h4>
-              <ul id="portfolio-flters" data-filter-group="language">
-                <li data-filter="">All Languages</li>
-                <li data-filter=".filter-Arabic">Arabic</li>
-                <li data-filter=".filter-Dari">Dari</li>
-                <li data-filter=".filter-English">English</li>
-                <li data-filter=".filter-Farsi">Farsi</li>
-                <li data-filter=".filter-French">French</li>
-                <li data-filter=".filter-Gujarati">Gujarati</li>
-                <li data-filter=".filter-Kutchi">Kutchi</li>
-                <li data-filter=".filter-Portuguese">Portuguese</li>
-                <li data-filter=".filter-Russian">Russian</li>
-                <li data-filter=".filter-Spanish">Spanish</li>
-                <li data-filter=".filter-Urduhindi">Urdu/Hindi</li>
-              </ul>
-            </div>
-          </div>
-
-          
-  
-          <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-            {% for connector in connectors %}
-            <!-- start repeat -->
-            <div class="col-lg-4 col-md-6 portfolio-item {% for professional_filter in connector['professional_category_filters'] %} {{professional_filter}} {% endfor %} {% for language_filter in connector['language_category_filters'] %} {{language_filter}} {% endfor %}">
-              <div class="portfolio-wrap">
-                <img src="{{connector['images']}}" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <p style="font-size: 22px; font-weight: 700; font-family: 'Montserrat', sans-serif;">
-                    <a href="{{connector['images']}}" data-gallery="portfolioGallery" title="{{connector.get('first_name', 'Error')}} {{connector.get('last_name', 'Error')}} - {{connector.get('title', 'Error')}}" class="portfolio-lightbox">
-                      {{connector.get('first_name', "Error")}} {{connector.get('last_name', "Error")}}
-                    </a>
-                  </h4>
-                  <!-- <p>{{connector.get('title', "Error")}}</p> -->
-                  <div>
-                    <a href="{{connector['images']}}" data-gallery="portfolioGallery" title="{{connector.get('first_name', 'Error')}} {{connector.get('last_name', 'Error')}} - {{connector.get('title', 'Error')}}" class="link-preview portfolio-lightbox"><i class="bi bi-plus"></i></a>
-                    <a href="/connectors/{{connector['id']}}" class="link-details" title="More Details"><i class="bi bi-link"></i></a>
+  <section class="inner-page pt-4">
+    <div class="container text-center">
+      <!-- ======= Portfolio Section ======= -->
+      <section id="portfolio" class="portfolio">
+          <div class="container" data-aos="fade-up">
+            <header class="section-header">
+              <h3 class="section-title">Connectors List and Search</h3>
+              <hr/>
+                <div class="input-group">
+                  <div class="form-outline">
+                    <input type="search" id="connectorsSearchBar" class="form-control" placeholder="Seach" />
                   </div>
                 </div>
+            </header>
+    
+            <div class="row" data-aos="fade-up" data-aos-delay="100">
+              <div class="col-lg-12">
+                <h4>Filter by Professional Category</h4>
+                <select id="professional-categories-filter" name="states[]" multiple="multiple"></select>
               </div>
             </div>
-            <!-- end repeat -->
-            {% endfor %}
-  
 
-  
+            <div class="row" data-aos="fade-up" data-aos-delay="100">
+              <div class="col-lg-12">
+                <h4>Filter by Language</h4>
+                <select id="languages-filter" name="states[]" multiple="multiple"></select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12">
+                <ul id="connectorsList" class="d-flex flex-row mb-3"></ul>
+              </div>
+            </div>
           </div>
-  
-        </div>
-      </section><!-- End Portfolio Section -->
-
-
-
-        
-        </div>
-    </section>
-
-   
-
-
-
+        </section>
+        <!-- End Portfolio Section -->
+    </div>
+  </section>
+  <script src="static/js/search.js"></script>
 {% endblock %}
