@@ -115,10 +115,6 @@ def get_all_connectors():
         if(connector.get('approved', None)):
             all_approved.append(connector)
     return all_approved
-    
-# TODO this could be improved
-def get_connector_by_name(name):
-    return airtable_connectors.search('full_name', name)
 
 def get_connector_by_id(id):
     if airtable_connectors.search('id', id):
