@@ -10,20 +10,21 @@ load_dotenv(dotenv_path="../.env")
 
 airtable_connectees = Airtable(os.getenv('AIRTABLE_BASE_ID'), 'connectees', os.getenv('AIRTABLE_API_KEY'))
 airtable_connectors = Airtable(os.getenv('AIRTABLE_BASE_ID'), 'connectors', os.getenv('AIRTABLE_API_KEY'))
+airtable_auth = Airtable(os.getenv('AIRTABLE_BASE_ID'), 'auth', os.getenv('AIRTABLE_API_KEY'))
 
 # --------------------------------------------------------
 #       AUTH FUNCTIONS
 # --------------------------------------------------------
 
 def login_auth(email, password):
-    matching_users = airtable_connectees.search('email', email)
-    for user in matching_users:
-        if(user['fields']['password'] == password):
-        # password match
-            return None
-        # else incorrect
-        else:
-            return "Incorrect password"
+    matching_users_arr = airtable_connectees.search('email', email)
+    if matching_users_arr:
+        user = matching_users_arr[0]
+        auth_info_arr = airtable_auth.search('user_id', user['fields']['id'])
+        if auth_info_arr:
+            auth_info = auth_info_arr[0]
+            if(auth_info['fields']['password'] == password):
+                return None
     return "Account not found"
 
 def login_get_user_info(email):
