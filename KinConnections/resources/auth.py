@@ -9,27 +9,26 @@ auth = Blueprint('auth', __name__)
 class Login(Resource):
     error = None
     success = None
+    next = None
 
     def get(self):
+        self.error = request.args.get('error')
         return Response(render_template('login.html', error=self.error), mimetype="text/html")
 
     def post(self):
+        self.next = request.args.get('next')
+
         email = request.form.get('inputEmail').lower()
         password = request.form.get('inputPassword')
+        user = db_wrapper.login_auth(email, password)
         
-        next = request.args.get('next')
+        if user:
+            for key in user['fields'].keys():
+                session[key] = user['fields'][key]
+        else:
+            self.error = "Account not found."
 
-        # External Authorization from function
-        self.error = db_wrapper.login_auth(email, password)
-
-        # valid username == no error
-        if(self.error == None):
-            user_info = db_wrapper.login_get_user_info(email)
-            for key in user_info.keys():
-                session[key] = user_info[key]
-            if next:
-                return redirect('/'+next)
-            return redirect(url_for('home'))
+        return redirect('/' + self.next) if self.next else redirect(url_for('home', error=self.error))
 
 class Logout(Resource):
     def get(self):

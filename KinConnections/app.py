@@ -25,10 +25,11 @@ def index():
 
 @app.route('/home')
 def home():
+    error = request.args.get('error')
     if session.get('email', None):
-        return render_template("home.html")
+        return render_template("home.html", error=error)
     else:
-        return redirect(url_for("login"))
+        return redirect(url_for("login", error=error))
 
 if __name__ == "__main__":
     app.run(debug=True, host='localhost', port=5000)

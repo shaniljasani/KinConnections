@@ -25,8 +25,8 @@ class db_wrapper:
             if auth_info_arr:
                 password_hash = auth_info_arr[0]['fields']['password_hash']
                 if(bcrypt.checkpw(password.encode('utf-8'), password_hash.encode('utf-8'))):
-                    return None
-        return "Account not found"
+                    return user
+        return None
 
     def login_get_user_info(email):
         matching_users = airtable_connectees.search('email', email)
