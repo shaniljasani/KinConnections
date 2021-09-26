@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 load_dotenv(dotenv_path="../.env")
 
-airtable_connectees = Airtable(os.getenv('AIRTABLE_BASE_ID'), 'connectees_dev', os.getenv('AIRTABLE_API_KEY'))
+airtable_connectees = Airtable(os.getenv('AIRTABLE_BASE_ID'), 'connectees', os.getenv('AIRTABLE_API_KEY'))
 airtable_connectors = Airtable(os.getenv('AIRTABLE_BASE_ID'), 'connectors', os.getenv('AIRTABLE_API_KEY'))
 airtable_auth = Airtable(os.getenv('AIRTABLE_BASE_ID'), 'auth', os.getenv('AIRTABLE_API_KEY'))
 
@@ -41,13 +41,15 @@ class db_wrapper:
 
     def signup_new_connectee(form_entries):
         pw_salt = bcrypt.gensalt()
-        pw_hashed = bcrypt.hashpw(form_entries['password'].encode('utf-8'), pw_salt)
+        pw_hash = bcrypt.hashpw(
+            form_entries['password'].encode('utf-8'), 
+            pw_salt
+        )
+        user_id = list()
         form_entries.pop('password')
         
-        user = None
         try:
             user = airtable_connectees.insert(form_entries)
-            user_id = list()
             user_id.append(user['id'])
         except:
             logging.error("There was an issue creating user record in user table")
@@ -55,12 +57,12 @@ class db_wrapper:
         
         try:
             airtable_auth.insert({
-                "password_hash": pw_hashed.decode('utf-8'),
-                "user_i": user_id
+                "password_hash": pw_hash.decode('utf-8'),
+                "user_id": user_id
             })
         except:
             logging.error("There was an issue creating auth record for user: " + str(user))
-            airtable_connectees.delete(user['id'])
+            airtable_connectees.delete(user_id.pop())
             return None
     
         return user
