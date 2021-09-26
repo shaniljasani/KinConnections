@@ -1,6 +1,7 @@
 # db_wrapper.py - KinConnections
 # Serves as wrapper for database access (airtable or otherwise)
 
+import logging
 import os
 import bcrypt
 from airtable import Airtable
@@ -42,16 +43,26 @@ class db_wrapper:
         pw_salt = bcrypt.gensalt()
         pw_hashed = bcrypt.hashpw(form_entries['password'].encode('utf-8'), pw_salt)
         form_entries.pop('password')
-
-        user = airtable_connectees.insert(form_entries)
-        user_id = list()
-        user_id.append(user['id'])
         
-        airtable_auth.insert({
-            "password_hash": pw_hashed.decode('utf-8'),
-            "user_id": user_id
-        })
-
+        user = None
+        try:
+            user = airtable_connectees.insert(form_entries)
+            user_id = list()
+            user_id.append(user['id'])
+        except:
+            logging.error("There was an issue creating user record in user table")
+            return None
+        
+        try:
+            airtable_auth.insert({
+                "password_hash": pw_hashed.decode('utf-8'),
+                "user_i": user_id
+            })
+        except:
+            logging.error("There was an issue creating auth record for user: " + str(user))
+            airtable_connectees.delete(user['id'])
+            return None
+    
         return user
 
     # --------------------------------------------------------
