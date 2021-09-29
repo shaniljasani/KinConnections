@@ -13,7 +13,7 @@ class Connectors(Resource):
 class Connector(Resource):
     def get(self, id):
         connector = db_wrapper.get_connector_by_id(id)
-        return Response(render_template("connector.html", connector), mimetype="text/html")
+        return Response(render_template("connector.html", connector=connector), mimetype="text/html")
 
 data_filters = {
     "Arts & Media" : "filter-artsmedia",
