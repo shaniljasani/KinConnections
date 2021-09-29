@@ -83,7 +83,6 @@
           
   
           <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-            <!-- TODO Add logic here -->
             {% for connector in connectors %}
             <!-- start repeat -->
             <div class="col-lg-4 col-md-6 portfolio-item {% for professional_filter in connector['professional_category_filters'] %} {{professional_filter}} {% endfor %} {% for language_filter in connector['language_category_filters'] %} {{language_filter}} {% endfor %}">

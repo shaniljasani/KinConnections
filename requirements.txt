@@ -1,4 +1,5 @@
 Flask
 python-dotenv
 airtable-python-wrapper
+bcrypt
 dominate
