@@ -61,5 +61,5 @@ def send_email(id):
     else:
         return "Message not sent!"
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True, host='localhost', port=5000)
