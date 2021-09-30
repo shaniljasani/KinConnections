@@ -2,3 +2,4 @@ Flask
 python-dotenv
 airtable-python-wrapper
 bcrypt
+flask_restful

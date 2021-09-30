@@ -3,11 +3,14 @@
 
 import logging
 import os
+from os.path import dirname, join
+
 import bcrypt
 from airtable import Airtable
 from dotenv import load_dotenv
 
-load_dotenv(dotenv_path="../.env")
+dotenv_path = join(dirname(__file__), '../.env')
+load_dotenv(dotenv_path)
 
 airtable_connectees = Airtable(os.getenv('AIRTABLE_BASE_ID'), 'connectees', os.getenv('AIRTABLE_API_KEY'))
 airtable_connectors = Airtable(os.getenv('AIRTABLE_BASE_ID'), 'connectors', os.getenv('AIRTABLE_API_KEY'))
