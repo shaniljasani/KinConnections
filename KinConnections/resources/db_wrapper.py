@@ -70,6 +70,11 @@ class db_wrapper:
     
         return user
 
+    def add_connector(data):
+        # surface error through flask
+        user = airtable_connectors.insert(data)
+        return user
+
     # --------------------------------------------------------
     #       CONNECTIONS FUNCTIONS
     # --------------------------------------------------------

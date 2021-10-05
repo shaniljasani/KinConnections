@@ -3,10 +3,11 @@
 
 import os
 
-from flask import Flask, render_template, session, request, redirect, url_for
 from dotenv import load_dotenv
-from resources.auth import auth
+from flask import Flask, redirect, render_template, request, session, url_for
 from flask_restful import Api
+
+from resources.auth import auth
 from resources.routes import initialize_routes
 
 load_dotenv(dotenv_path="../.env")
