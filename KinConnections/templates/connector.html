@@ -96,17 +96,11 @@
 $(function(){
 	$('email-button').click(function(){
 
-		$.ajax({
-			url: "/send_email/{{connector.get('id', None)}}",
-			data: $('connections-form').serialize(),
-			type: 'POST',
-			success: function(response){
-				console.log(response);
-			},
-			error: function(error){
-				console.log(error);
-			}
-		});
+    var x = document.getElementById("loadingBlock");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    }
+
 	});
 });
 
@@ -123,7 +117,7 @@ $(function(){
             <h4 style="font-weight: 600;">Connect with {{connector['first_name']}} {{connector['last_name']}}</h4>
             <p>To connect, use the following text box to send the connector a message! Please ensure you are following the <a>KinConnections Connecting Guidelines</a>. You can also select a message template by clicking the buttons below.</p>
 
-            <form action="/send_email/{{connector.get('id', None)}}" method="POST" role="form" id="connections-form" class="php-email-form">
+            <form action="/api/send_email/{{connector.get('id', None)}}" method="post" role="form" class="php-email-form">
               <div class="form-group mt-3">
                 <label for="userSubject" class="mb-2">Subject</label>
                 <input type="text" class="form-control" name="userSubject" id="userSubject" placeholder="Example: Shared passion for development" required="">

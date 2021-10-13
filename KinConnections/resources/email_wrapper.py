@@ -13,14 +13,14 @@ from email.utils import formataddr
 from dominate import document
 from dominate.tags import *
 # flask
-from flask import Blueprint, Response, request, render_template, session, redirect, url_for
+from flask import Blueprint, Response, request, render_template, session, redirect, url_for, jsonify
 from flask_restful import Resource
-
-from .db_wrapper import *
+# database
+from .db_wrapper import db_wrapper
 
 
 # access credentials from .env
-load_dotenv(dotenv_path="../.env")
+# load_dotenv(dotenv_path="../.env")
 
 kc_email = os.getenv("KC_EMAIL")
 kc_email_password = os.getenv("KC_EMAIL_PASSWORD")
@@ -37,8 +37,8 @@ class Email(Resource):
             return redirect("/login?error=notSignedIn")
 
         # send email
-        subject = (request.form.get('userSubject'))
-        message = (request.form.get('userMessage'))
+        subject = request.form.get('userSubject')
+        message = request.form.get('userMessage')
 
         currentConnector = db_wrapper.get_connector_by_id(id)
         connector_name = (currentConnector['first_name'] + ' ' + currentConnector['last_name'])
@@ -48,7 +48,9 @@ class Email(Resource):
         sender_email = (session['email'])
 
         if (self.__send_email_message(sender_name, sender_email, connector_name, connector_email, subject, message)):
-            return "OK"
+            resp = jsonify(success=True)
+            resp.status_code = 200
+            return resp
         else:
             return "Message not sent!"
 
@@ -73,9 +75,8 @@ class Email(Resource):
             p('Message: %s' % message_body)
             hr()
             with span():
+                # TODO use env to place domain and email
                 p('You are receiving this email because you are a connector on kinconnections.com')
-                # TODO place domain
-                # TODO update email
                 p('If you wish to no longer be a connector, please email connections@kinconnections.com')
 
         # Turn these into plain/html MIMEText objects
