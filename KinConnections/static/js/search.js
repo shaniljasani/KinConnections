@@ -145,6 +145,12 @@ const loadSelect = () => {
 $(document).ready(async function() {
     await loadConnectors();
     loadSelect();
-    $('#professional-categories-filter').select2();
-    $('#languages-filter').select2();
+    $('#professional-categories-filter').select2({
+        placeholder: "Filter professional category",
+        allowClear: true
+    });
+    $('#languages-filter').select2({
+        placeholder: "Filter language",
+        allowClear: true
+    });
 });
