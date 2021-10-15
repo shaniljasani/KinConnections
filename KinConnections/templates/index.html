@@ -46,16 +46,16 @@
 
 			<nav id="navbar" class="navbar order-last order-lg-0">
 				<ul>
-					<li><a class="nav-link scrollto" href="/home">Home</a></li>
-					<li><a class="nav-link scrollto" href="/home#get-started">How it Works</a></li>
-					<li><a class="nav-link scrollto" href="/">TODO Connecting Guide</a></li>
+					<li><a class="nav-link scrollto" href="/">Home</a></li>
+					<li><a class="nav-link scrollto" href="/#get-started">How it Works</a></li>
+					<li><a class="nav-link scrollto" href="/home">Connecting Guide</a></li>
 					<li><a class="nav-link scrollto" href="/connectors">Connectors</a></li>
 					<!-- if logged in -->
 					{% if session.get('email', None) %}
-					<li class="dropdown"><a href="/profile"><span>Hi {{session.get('name', None)}}!</span> <i
+					<li class="dropdown"><a href="/profile"><span>Hi {{session.get('name', 'Connectee')}}!</span> <i
 								class="bi bi-chevron-down"></i></a>
 						<ul>
-							<li><a href="/profile">My Profile</a></li>
+							<!-- <li><a href="/profile">My Profile</a></li> -->
 							<li><a href="/logout">Logout</a></li>
 						</ul>
 					</li>
