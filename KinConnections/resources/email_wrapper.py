@@ -28,13 +28,10 @@ kc_email_server = os.getenv("KC_EMAIL_SERVER")
 kc_email_port = int(os.getenv("KC_EMAIL_PORT"))
 
 class Email(Resource):
-    def get(self):
-        return 'Error! Return <a href="/">Home</a>'
-        
     def post(self, id):
         # ensure logged in
         if not session.get('email', None):
-            return redirect("/login?error=notSignedIn")
+            return 'Unauthorized Access', 401
 
         # send email
         subject = request.form.get('userSubject')
@@ -48,14 +45,12 @@ class Email(Resource):
         sender_email = (session['email'])
 
         if (self.__send_email_message(sender_name, sender_email, connector_name, connector_email, subject, message)):
-            resp = jsonify(success=True)
-            resp.status_code = 200
-            return resp
+            print("message sent successfully")
+            return 'OK', 200
         else:
-            return "Message not sent!"
+            return 'Unable to send message', 500
 
     def __send_email_message(self, sender_name, sender_email, recipient_name, recipient_email, message_subject, message_body):
-        
         message = MIMEMultipart("alternative")
 
         message['Subject'] = "[KinConnections] New Connection from " + sender_name
