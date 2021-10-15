@@ -42,6 +42,9 @@ const filterBySearchString = (connectors) => {
         return connectors;
     }
 
+
+    
+
     return connectors.filter((c) => {
         return (
             c.first_name.toLowerCase().includes(searchString) ||
@@ -101,19 +104,21 @@ const displayConnectors = (connectors) => {
     const htmlString = connectors
         .map((connector) => {
             return `
-            <li class="p-2 portfolio-item w-25">
-                <div class="portfolio-wrap">
-                <img src="${connector['images']}" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                    <p style="font-size: 22px; font-weight: 700; font-family: 'Montserrat', sans-serif;">
-                    <a href="${connector['images']}" data-gallery="portfolioGallery" title="${connector['first_name']} ${connector['last_name']} - ${connector['title']}" class="portfolio-lightbox">
-                    ${connector['first_name']} ${connector['last_name']}
-                    </a>
-                    <div>
-                        <a href="${connector['images']}" data-gallery="portfolioGallery" title="{{connector.get('first_name', 'Error')}} {{connector.get('last_name', 'Error')}} - {{connector.get('title', 'Error')}}" class="link-preview portfolio-lightbox"><i class="bi bi-plus"></i></a>
-                        <a href="/connectors/{{connector['id']}}" class="link-details" title="More Details"><i class="bi bi-link"></i></a>
+            <li class="p-2 portfolio-item">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="${connector['images']}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">${connector['first_name']} ${connector['last_name']}</h5>
+                        <p class="card-text text-left mb-3">
+                            <i class="bi bi-geo-alt-fill m-1"></i> ${connector['location']} <br>
+                            <i class="bi bi-flag-fill m-1"></i> ${connector['region_current']} <br>
+                            <i class="bi bi-filter-circle-fill m-1"></i> ${connector['professional_category'].join(', ')} <br>
+                            <i class="bi bi-globe2 m-1"></i> ${connector['languages'].join(', ')}
+                        </p>
+                        <p class="text-center mx-0 my-0">
+                            <a href="/connector/${connector['id']}" class="btn btn-primary">More Info</a>
+                        </p>
                     </div>
-                </div>
                 </div>
             </li>`;
         })
