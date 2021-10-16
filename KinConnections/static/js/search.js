@@ -1,14 +1,15 @@
-const connectorsList = document.getElementById('connectorsList');
-const searchBar = $('#connectorsSearchBar');
-const professionalCategoriesFilterSelect = $("#professional-categories-filter");
-const languagesFilterSelect = $("#languages-filter");
+const MISSING_FIELD_MESSAGE = "Info not available"
+const CONNECTORS_LIST = document.getElementById('connectorsList');
+const SEARCH_BAR = $('#connectorsSearchBar');
+const PROFESSIONAL_CATEGORIES_FILTER_SELECT = $("#professional-categories-filter");
+const LANGUAGES_FILTER_SELECT = $("#languages-filter");
 
 let connectors = [];
 let searchString = "";
 let languageFilter = new Set();
 let professionalCategoryFilter = new Set();
 
-professionalCategoriesFilterSelect.on("change", (e) => {
+PROFESSIONAL_CATEGORIES_FILTER_SELECT.on("change", (e) => {
     professionalCategoryFilter.clear();
     for (const o of e.target.selectedOptions) {
         professionalCategoryFilter.add(o.innerHTML);
@@ -16,7 +17,7 @@ professionalCategoriesFilterSelect.on("change", (e) => {
     filterConnectors();
 });
 
-languagesFilterSelect.on("change", (e) => {
+LANGUAGES_FILTER_SELECT.on("change", (e) => {
     languageFilter.clear();
     for (const o of e.target.selectedOptions) {
         languageFilter.add(o.innerHTML);
@@ -24,7 +25,7 @@ languagesFilterSelect.on("change", (e) => {
     filterConnectors();
 });
 
-searchBar.on("keyup", (e) => {
+SEARCH_BAR.on("keyup", (e) => {
     searchString = e.target.value.toLowerCase().trim();
     filterConnectors();
 });
@@ -42,18 +43,15 @@ const filterBySearchString = (connectors) => {
         return connectors;
     }
 
-
-    
-
     return connectors.filter((c) => {
         return (
             c.first_name.toLowerCase().includes(searchString) ||
             c.last_name.toLowerCase().includes(searchString) ||
-            c.education.toLowerCase().includes(searchString) ||
-            c.bio.toLowerCase().includes(searchString) ||
-            c.location.toLowerCase().includes(searchString) ||
-            c.title.toLowerCase().includes(searchString) ||
-            c.region_current.toLowerCase().includes(searchString)
+            c.education ? c.education.toLowerCase().includes(searchString) : false ||
+            c.bio ? c.bio.toLowerCase().includes(searchString) : false ||
+            c.location ? c.location.toLowerCase().includes(searchString) : false ||
+            c.title ? c.title.toLowerCase().includes(searchString) : false ||
+            c.region_current ? c.region_current.toLowerCase().includes(searchString) : false
         );
     });   
 }
@@ -64,13 +62,16 @@ const filterByLanguageFilter = (connectors) => {
     }
 
     return connectors.filter((c) => {
-        let matchesLanguage = false;
-        c.languages.forEach((l) => {
-            if (languageFilter.has(l)) {
-                matchesLanguage = true;
-            }
-        })
-        return matchesLanguage;
+        if (c.languages) {
+            let matchesLanguage = false;
+            c.languages.forEach((l) => {
+                if (languageFilter.has(l)) {
+                    matchesLanguage = true;
+                }
+            })
+            return matchesLanguage;
+        }
+        return false
     });
 }
 
@@ -80,13 +81,16 @@ const filterByProfessionalCategoryFilter = (connectors) => {
     }
 
     return connectors.filter((c) => {
-        let matchesProfessionalCategory = false;
-        c.professional_category.forEach((l) => {
-            if (professionalCategoryFilter.has(l)) {
-                matchesProfessionalCategory = true;
-            }
-        })
-        return matchesProfessionalCategory;
+        if (c.professional_category) {
+            let matchesProfessionalCategory = false;
+            c.professional_category.forEach((l) => {
+                if (professionalCategoryFilter.has(l)) {
+                    matchesProfessionalCategory = true;
+                }
+            })
+            return matchesProfessionalCategory;
+        }
+        return false;
     });
 }
 
@@ -106,14 +110,15 @@ const displayConnectors = (connectors) => {
             return `
             <li class="p-2 portfolio-item">
                 <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="${connector['images']}" alt="Card image cap">
+                    <img class="card-img-top" src="${connector['images'] ? connector['images'] : "static/img/profile.png"}" alt="Image of ${connector['first_name']} ${connector['last_name']}">
                     <div class="card-body">
                         <h5 class="card-title text-center">${connector['first_name']} ${connector['last_name']}</h5>
                         <p class="card-text text-left mb-3">
-                            <i class="bi bi-geo-alt-fill m-1"></i> ${connector['location']} <br>
-                            <i class="bi bi-flag-fill m-1"></i> ${connector['region_current']} <br>
-                            <i class="bi bi-filter-circle-fill m-1"></i> ${connector['professional_category'].join(', ')} <br>
-                            <i class="bi bi-globe2 m-1"></i> ${connector['languages'].join(', ')}
+                            <i class="bi bi-book-fill m-1"></i> ${connector['education'] ? connector['education'] : MISSING_FIELD_MESSAGE} <br>
+                            <i class="bi bi-geo-alt-fill m-1"></i> ${connector['location'] ? connector['location'] : MISSING_FIELD_MESSAGE} <br>
+                            <i class="bi bi-flag-fill m-1"></i> ${connector['region_current'] ? connector['region_current'] : MISSING_FIELD_MESSAGE}<br>
+                            <i class="bi bi-filter-circle-fill m-1"></i> ${connector['professional_category'] ? connector['professional_category'].join(', ') : MISSING_FIELD_MESSAGE} <br>
+                            <i class="bi bi-globe2 m-1"></i> ${connector['languages'] ? connector['languages'].join(', ') : MISSING_FIELD_MESSAGE}
                         </p>
                         <p class="text-center mx-0 my-0">
                             <a href="/connector/${connector['id']}" class="btn btn-primary">More Info</a>
@@ -123,7 +128,7 @@ const displayConnectors = (connectors) => {
             </li>`;
         })
         .join('');
-    connectorsList.innerHTML = htmlString;
+    CONNECTORS_LIST.innerHTML = htmlString;
 };
 
 const loadSelect = () => {
@@ -131,19 +136,24 @@ const loadSelect = () => {
     let languageCategories = new Set();
 
     connectors.forEach((c) => {
-        c['professional_category'].forEach((category) => {
-            professionalCategories.add(category);
-        })
-        c['languages'].forEach((language) => {
-            languageCategories.add(language);
-        })
+        if (c['professional_category']) {
+            c['professional_category'].forEach((category) => {
+                professionalCategories.add(category);
+            })
+        }
+        
+        if (c['languages']) {
+            c['languages'].forEach((language) => {
+                languageCategories.add(language);
+            })
+        }
     });
 
     professionalCategories.forEach((c) => {
-        professionalCategoriesFilterSelect.append(`<option value="${c}">${c}</option>`)
+        PROFESSIONAL_CATEGORIES_FILTER_SELECT.append(`<option value="${c}">${c}</option>`)
     });
     languageCategories.forEach((c) => {
-        languagesFilterSelect.append(`<option value="${c}">${c}</option>`)
+        LANGUAGES_FILTER_SELECT.append(`<option value="${c}">${c}</option>`)
     })
 }
 
