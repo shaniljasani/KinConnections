@@ -13,11 +13,11 @@ ma = Marshmallow()
 # 	"gender" : "Male",
 # 	"languages" : ["English"]
 # }
-class ConnectorExternalSchema(ma.Schema):
+class ConnectorExternalApiSchema(ma.Schema):
     first_name = fields.String(required=True)
     last_name = fields.String(required=True)
     email = fields.String(required=True)
-    dob = fields.String(required=True) # should we store as YY-MM-DD instead?
+    dob = fields.String(required=True)
     country_origin = fields.String(required=True)
     region_current = fields.String(required=True)
     gender = fields.String(required=True)
