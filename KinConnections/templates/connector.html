@@ -79,7 +79,9 @@
         <section id="pricing" style="padding:0;">
           <div class="card">
             <div class="card-block">
-              <a href="#connect" data-height="auto" class="portfolio-lightbox btn">Connect with {{connector['first_name']}} {{connector['last_name']}}</a>
+              <!-- Lightbox code -->
+              <!-- <a href="#connect" data-height="auto" class="portfolio-lightbox btn">Connect with {{connector['first_name']}} {{connector['last_name']}}</a> -->
+              <a href="#connect" class="btn">Connect with {{connector['first_name']}} {{connector['last_name']}}</a>
             </div>
           </div>
         </section>
@@ -138,7 +140,7 @@ $(function(){
 
             <div class="text-center">
               <br/>
-              <p>Use these buttons to insert an example message in the box above <br/>
+              <p>Use these buttons to insert an example message template in the box above<br/>
               <span>
                 <button class="btn btn-outline-success" onclick="example1()" title="Example 1">Example 1</button>
                 <button class="btn btn-outline-success" onclick="example2()" title="Example 2">Example 2</button>
@@ -146,8 +148,8 @@ $(function(){
               </span>  </p>
             </div>
 
-
-          <a class="gtrigger-close" href="#">Close Connection Box</a>
+          <!-- Close Lightbox -->
+          <!-- <a class="gtrigger-close" href="#">Close Connection Box</a> -->
             
           </div>
         </div>
@@ -168,7 +170,7 @@ $(function(){
     var curPos = document.getElementById("userMessage").selectionStart;
     // console.log(curPos);
     let x = document.getElementById("userMessage").value;
-    let text_to_insert = "hello my name is shanil and i am a student at _ school studying _ subjects";
+    let text_to_insert = "Ya Ali Madad! My name is <INSERT YOUR NAME HERE> and I am a student at <SCHOOL NAME>. I'm interested in <INSERT INTERESTS HERE>";
     document.getElementById("userMessage").value = (x.slice(0, curPos) + text_to_insert + x.slice(curPos));
   }
 
@@ -176,7 +178,7 @@ $(function(){
     var curPos = document.getElementById("userMessage").selectionStart;
     // console.log(curPos);
     let x = document.getElementById("userMessage").value;
-    let text_to_insert = "I saw that you __ and was interested in that because ____";
+    let text_to_insert = "I saw that you <WHAT THEY DO THAT INTEREST YOU> and was interested in that because <HOW IT TIES INTO YOUR PASSIONS>";
     document.getElementById("userMessage").value = (x.slice(0, curPos) + text_to_insert + x.slice(curPos));
   }
 
@@ -184,7 +186,7 @@ $(function(){
     var curPos = document.getElementById("userMessage").selectionStart;
     // console.log(curPos);
     let x = document.getElementById("userMessage").value;
-    let text_to_insert = "I would love to speak with you sometime, I am available at the following times ______";
+    let text_to_insert = "I would love to speak with you sometime, I am available at <INSERT AVAILABILITY> on <INSERT PLATFORM (ex. Zoom or Phone call)>";
     document.getElementById("userMessage").value = (x.slice(0, curPos) + text_to_insert + x.slice(curPos));
   }
 </script>
