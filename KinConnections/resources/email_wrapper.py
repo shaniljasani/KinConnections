@@ -5,10 +5,8 @@
 import os
 from dotenv import load_dotenv
 # for email engine
-import smtplib, ssl
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-from email.utils import formataddr
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 # for rich html email
 from dominate import document
 from dominate.tags import *
@@ -19,13 +17,7 @@ from flask_restful import Resource
 from .db_wrapper import db_wrapper
 
 
-# access credentials from .env
-# load_dotenv(dotenv_path="../.env")
-
-kc_email = os.getenv("KC_EMAIL")
-kc_email_password = os.getenv("KC_EMAIL_PASSWORD")
-kc_email_server = os.getenv("KC_EMAIL_SERVER")
-kc_email_port = int(os.getenv("KC_EMAIL_PORT"))
+os.getenv("SENDGRID_API_KEY")
 
 class Email(Resource):
     def post(self, id):
@@ -34,8 +26,8 @@ class Email(Resource):
             return 'Unauthorized Access', 401
 
         # send email
-        subject = request.form.get('userSubject')
-        message = request.form.get('userMessage')
+        user_subject = request.form.get('userSubject')
+        user_message = request.form.get('userMessage')
 
         currentConnector = db_wrapper.get_connector_by_id(id)
         connector_name = (currentConnector['first_name'] + ' ' + currentConnector['last_name'])
@@ -44,49 +36,52 @@ class Email(Resource):
         sender_name = (session['first_name'] + ' ' + session['last_name'])
         sender_email = (session['email'])
 
-        if (self.__send_email_message(sender_name, sender_email, connector_name, connector_email, subject, message)):
-            print("message sent successfully")
+        if (self.__send_email_message(sender_name, sender_email, connector_name, connector_email, user_subject, user_message)):
             return 'OK', 200
         else:
             return 'Unable to send message', 500
 
     def __send_email_message(self, sender_name, sender_email, recipient_name, recipient_email, message_subject, message_body):
-        message = MIMEMultipart("alternative")
 
-        message['Subject'] = "[KinConnections] New Connection from " + sender_name
-        message['From'] = formataddr(("Kin Connections", "connections@kc.campconnect.co"))
-        message['Reply-To'] = formataddr((sender_name, sender_email))
-        message['Cc'] = formataddr(("Kin Connections", "connections@kc.campconnect.co"))
-        message['To'] = formataddr((recipient_name, recipient_email))
-
-
-        # Create the plain-text and HTML version of your message
+        # Create the plain-text and HTML version
         text_string = sender_name + " would like to connect with you on KinConnections, subject: " + message_subject + " and message: " + message_body
+        html_string = self.__write_html_message(sender_name, sender_email, message_subject, message_body)
+
+        # construct mail object
+        message = Mail(
+            from_email = ("noreply@globalencountersprogramme.org", "Kin Connections (Global Encounters)"),
+            to_emails = (recipient_email, recipient_name),
+            subject = "New Connection from " + sender_name,
+            plain_text_content = text_string,
+            html_content = str(html_string)
+        )
+        message.add_cc(("connections@kc.campconnect.co", "Kin Connections"))
+        message.reply_to = (sender_email,sender_name)
+
+        # send mail
+        try:
+            sendgrid_client = SendGridAPIClient(os.getenv('SENDGRID_API_KEY'))
+            response = sendgrid_client.send(message)
+            print(response.status_code)
+            print(response.body)
+            print(response.headers)
+        except Exception as e:
+            print(e)
+            print(e.body)
+            return False
+
+        return True
+
+    def __write_html_message(self, sender_name, sender_email, message_subject, message_body):
         with document(title="KinConnections New Connection") as html_object:
             h1('KinConnections')
             h2('New Connection from ' + sender_name)
+            p('Sender Email ' + sender_email)
             hr()
             h3('Subject: %s' % message_subject)
             p('Message: %s' % message_body)
             hr()
             with span():
-                # TODO use env to place domain and email
-                p('You are receiving this email because you are a connector on kinconnections.com')
-                p('If you wish to no longer be a connector, please email connections@kinconnections.com')
-
-        # Turn these into plain/html MIMEText objects
-        part1 = MIMEText(text_string, "plain")
-        part2 = MIMEText(str(html_object), "html")
-
-        # Add HTML/plain-text parts to MIMEMultipart message
-        # The email client will try to render the last part first
-        message.attach(part1)
-        message.attach(part2)
-
-        # Create secure connection with server and send email
-        context = ssl.create_default_context()
-        with smtplib.SMTP_SSL(kc_email_server, kc_email_port, context=context) as server:
-            server.login(kc_email, kc_email_password)
-            server.send_message(message)
-        
-        return True
+                p('You are receiving this email because you are a connector on Kin Connections (kc.campconnect.co)')
+                p('If you wish to no longer be a connector, please email connections@kc.campconnect.co')
+        return html_object
