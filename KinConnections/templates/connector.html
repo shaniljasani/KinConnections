@@ -79,7 +79,9 @@
         <section id="pricing" style="padding:0;">
           <div class="card">
             <div class="card-block">
-              <a href="#connect" data-height="auto" class="portfolio-lightbox btn">Connect with {{connector['first_name']}} {{connector['last_name']}}</a>
+              <!-- Lightbox code -->
+              <!-- <a href="#connect" data-height="auto" class="portfolio-lightbox btn">Connect with {{connector['first_name']}} {{connector['last_name']}}</a> -->
+              <a href="#connect" class="btn">Connect with {{connector['first_name']}} {{connector['last_name']}}</a>
             </div>
           </div>
         </section>
@@ -91,6 +93,22 @@
 
 <hr class="mt-5 mb-5" />
 
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"> </script>
+<script type="text/javascript"> 
+$(function(){
+	$('email-button').click(function(){
+
+    var x = document.getElementById("loadingBlock");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    }
+
+	});
+});
+
+
+</script> 
+
 <!-- <div id="connect" style="display: none"> -->
 <div id="connect">
   <footer id="footer">
@@ -101,7 +119,7 @@
             <h4 style="font-weight: 600;">Connect with {{connector['first_name']}} {{connector['last_name']}}</h4>
             <p>To connect, use the following text box to send the connector a message! Please ensure you are following the <a>KinConnections Connecting Guidelines</a>. You can also select a message template by clicking the buttons below.</p>
 
-            <form action="loadingBlocker()" method="post" role="form" class="php-email-form">
+            <form action="/api/send_email/{{connector.get('id', None)}}" method="post" role="form" class="php-email-form">
               <div class="form-group mt-3">
                 <label for="userSubject" class="mb-2">Subject</label>
                 <input type="text" class="form-control" name="userSubject" id="userSubject" placeholder="Example: Shared passion for development" required="">
@@ -112,16 +130,17 @@
               </div>
 
               <div class="my-3">
-                <div id="loadingBlock" style="display: none;" class="loading">Loading</div>
-                <div id="sentMessage" style="display: none;" class="sent-message">Your message has been sent. Thank you!</div>
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
               </div>
 
-              <div class="text-center"><button type="submit" onclick="loadingBlocker()" title="Send Message">Send Message</button></div>
+              <div class="text-center"><button type="submit" title="Send Message" id="email-button">Send Message</button></div>
             </form>
 
             <div class="text-center">
               <br/>
-              <p>Use these buttons to insert an example message in the box above <br/>
+              <p>Use these buttons to insert an example message template in the box above<br/>
               <span>
                 <button class="btn btn-outline-success" onclick="example1()" title="Example 1">Example 1</button>
                 <button class="btn btn-outline-success" onclick="example2()" title="Example 2">Example 2</button>
@@ -129,8 +148,8 @@
               </span>  </p>
             </div>
 
-
-          <a class="gtrigger-close" href="#">Close Connection Box</a>
+          <!-- Close Lightbox -->
+          <!-- <a class="gtrigger-close" href="#">Close Connection Box</a> -->
             
           </div>
         </div>
@@ -151,7 +170,7 @@
     var curPos = document.getElementById("userMessage").selectionStart;
     // console.log(curPos);
     let x = document.getElementById("userMessage").value;
-    let text_to_insert = "hello my name is shanil and i am a student at _ school studying _ subjects";
+    let text_to_insert = "Ya Ali Madad! My name is <INSERT YOUR NAME HERE> and I am a student at <SCHOOL NAME>. I'm interested in <INSERT INTERESTS HERE>";
     document.getElementById("userMessage").value = (x.slice(0, curPos) + text_to_insert + x.slice(curPos));
   }
 
@@ -159,7 +178,7 @@
     var curPos = document.getElementById("userMessage").selectionStart;
     // console.log(curPos);
     let x = document.getElementById("userMessage").value;
-    let text_to_insert = "I saw that you __ and was interested in that because ____";
+    let text_to_insert = "I saw that you <WHAT THEY DO THAT INTEREST YOU> and was interested in that because <HOW IT TIES INTO YOUR PASSIONS>";
     document.getElementById("userMessage").value = (x.slice(0, curPos) + text_to_insert + x.slice(curPos));
   }
 
@@ -167,7 +186,7 @@
     var curPos = document.getElementById("userMessage").selectionStart;
     // console.log(curPos);
     let x = document.getElementById("userMessage").value;
-    let text_to_insert = "I would love to speak with you sometime, I am available at the following times ______";
+    let text_to_insert = "I would love to speak with you sometime, I am available at <INSERT AVAILABILITY> on <INSERT PLATFORM (ex. Zoom or Phone call)>";
     document.getElementById("userMessage").value = (x.slice(0, curPos) + text_to_insert + x.slice(curPos));
   }
 </script>
