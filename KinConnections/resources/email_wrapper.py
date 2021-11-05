@@ -49,7 +49,7 @@ class Email(Resource):
 
         # construct mail object
         message = Mail(
-            from_email = ("noreply@globalencountersprogramme.org", "Kin Connections (Global Encounters)"),
+            from_email = ("connections@kc.campconnect.co", "Kin Connections (Global Encounters)"),
             to_emails = (recipient_email, recipient_name),
             subject = "New Connection from " + sender_name,
             plain_text_content = text_string,
