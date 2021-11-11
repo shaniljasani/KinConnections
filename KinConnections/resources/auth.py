@@ -1,8 +1,11 @@
-from os import error
-from .db_wrapper import db_wrapper
 from datetime import datetime, timedelta
-from flask import Blueprint, Response, request, render_template, session, redirect, url_for
+from os import error
+
+from flask import (Blueprint, Response, redirect, render_template, request,
+                   session, url_for)
 from flask_restful import Resource
+
+from .db_wrapper import db_wrapper
 
 auth = Blueprint('auth', __name__)
 
