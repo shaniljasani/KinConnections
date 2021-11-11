@@ -14,7 +14,9 @@
   <link href="static/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,400,500,600,700" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,400,500,600,700"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="static/vendor/aos/aos.css" rel="stylesheet">
@@ -37,34 +39,34 @@
 <body>
 
   <!-- ======= Header ======= -->
-	<header id="header" class="fixed-top d-flex align-items-center header-transparent">
-		<div class="container d-flex align-items-center">
+  <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+    <div class="container d-flex align-items-center">
 
-			<h1 class="logo me-auto"><a href="/">Kin<strong>Connections</strong></a></h1>
-			<!-- Uncomment below if you prefer to use an image logo -->
-			<!-- <a href="index.html" class="logo me-auto"><img src="static/img/logo.png" alt="" class="img-fluid"></a> -->
+      <h1 class="logo me-auto"><a href="/">Kin<strong>Connections</strong></a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto"><img src="static/img/logo.png" alt="" class="img-fluid"></a> -->
 
-			<nav id="navbar" class="navbar order-last order-lg-0">
-				<ul>
-					<li><a class="nav-link scrollto" href="/home">Home</a></li>
-					<li><a class="nav-link scrollto" href="/home#about">How it Works</a></li>
-					<li><a class="nav-link scrollto" href="/guide">Connecting Guide</a></li>
-					<li><a class="nav-link scrollto" href="/connectors">Connectors</a></li>
-					<!-- if logged in -->
-					{% if session.get('email', None) %}
-					<li class="dropdown"><a href="/profile/{{session.get('name', None)}}"><span>Hi {{session.get('name', None)}}!</span> <i
-								class="bi bi-chevron-down"></i></a>
-						<ul>
-							<li><a href="/profile">My Profile</a></li>
-							<li><a href="/logout">Logout</a></li>
-						</ul>
-					</li>
-					<!-- else -->
-					{% else %}
-					<li><a class="nav-link scrollto " href="/login">Login</a></li>
-					{% endif %}
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto" href="/home">Home</a></li>
+          <li><a class="nav-link scrollto" href="/home#about">How it Works</a></li>
+          <li><a class="nav-link scrollto" href="/guide">Connecting Guide</a></li>
+          <li><a class="nav-link scrollto" href="/connectors">Connectors</a></li>
+          <!-- if logged in -->
+          {% if session.get('email', None) %}
+          <li class="dropdown"><a href="/profile/{{session.get('name', None)}}"><span>Hi {{session.get('name',
+                None)}}!</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="/profile">My Profile</a></li>
+              <li><a href="/logout">Logout</a></li>
+            </ul>
+          </li>
+          <!-- else -->
+          {% else %}
+          <li><a class="nav-link scrollto " href="/login">Login</a></li>
+          {% endif %}
 
-					<!-- <li><a class="nav-link scrollto" href="#team">Team</a></li>
+          <!-- <li><a class="nav-link scrollto" href="#team">Team</a></li>
 			  <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
 				<ul>
 				  <li><a href="#">Drop Down 1</a></li>
@@ -83,19 +85,19 @@
 				</ul>
 			  </li>
 			  <li><a class="nav-link scrollto" href="#footer">Contact</a></li> -->
-				</ul>
-				<i class="bi bi-list mobile-nav-toggle"></i>
-			</nav><!-- .navbar -->
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
 
-			<!-- <div class="social-links">
+      <!-- <div class="social-links">
 			<a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
 			<a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
 			<a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
 			<a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
 		  </div> -->
 
-		</div>
-	</header><!-- End Header -->
+    </div>
+  </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="clearfix">
@@ -119,12 +121,12 @@
 
   <!-- ======= Footer ======= -->
   <footer id="footer" class="section-bg">
-    
+
 
     <div class="container">
       <div class="copyright">
-				&copy; 2021 | Kin<strong>Connections</strong>| All Rights Reserved
-			</div>
+        &copy; 2021 | Kin<strong>Connections</strong>| All Rights Reserved
+      </div>
       <div class="credits">
         <!--
         All the links in the footer should remain intact.
@@ -137,7 +139,8 @@
     </div>
   </footer><!-- End  Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="static/vendor/aos/aos.js"></script>

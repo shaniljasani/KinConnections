@@ -20,9 +20,11 @@ api = Api(app)
 
 initialize_routes(api)
 
+
 @app.route('/')
 def index():
     return render_template("index.html")
+
 
 @app.route('/home')
 def home():
@@ -31,6 +33,7 @@ def home():
         return render_template("home.html", error=error)
     else:
         return redirect(url_for("login", error=error))
+
 
 if __name__ == "__main__":
     app.run(debug=True, host='localhost', port=5000)

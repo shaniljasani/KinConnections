@@ -8,6 +8,7 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+
 body {
   background: #fff;
   color: #444;
@@ -41,6 +42,7 @@ h1, h2, h3, h4, h5, h6 {
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
+
 .back-to-top {
   position: fixed;
   visibility: hidden;
@@ -74,6 +76,7 @@ h1, h2, h3, h4, h5, h6 {
 /*--------------------------------------------------------------
 # Disable aos animation delay on mobile devices
 --------------------------------------------------------------*/
+
 @media screen and (max-width: 768px) {
   [data-aos-delay] {
     transition-delay: 0 !important;
@@ -83,6 +86,7 @@ h1, h2, h3, h4, h5, h6 {
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
+
 #header {
   background: #fff;
   transition: all 0.5s;
@@ -154,9 +158,11 @@ h1, h2, h3, h4, h5, h6 {
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
+
 /**
 * Desktop Navigation 
 */
+
 .navbar {
   padding: 0;
 }
@@ -193,7 +199,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: 5px;
 }
 
-.navbar a:hover, .navbar .active, .navbar li:hover > a {
+.navbar a:hover, .navbar .active, .navbar li:hover>a {
   color: #1bb1dc;
 }
 
@@ -226,11 +232,11 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 12px;
 }
 
-.navbar .dropdown ul a:hover, .navbar .dropdown ul .active:hover, .navbar .dropdown ul li:hover > a {
+.navbar .dropdown ul a:hover, .navbar .dropdown ul .active:hover, .navbar .dropdown ul li:hover>a {
   color: #1bb1dc;
 }
 
-.navbar .dropdown:hover > ul {
+.navbar .dropdown:hover>ul {
   opacity: 1;
   top: 100%;
   visibility: visible;
@@ -242,7 +248,7 @@ h1, h2, h3, h4, h5, h6 {
   visibility: hidden;
 }
 
-.navbar .dropdown .dropdown:hover > ul {
+.navbar .dropdown .dropdown:hover>ul {
   opacity: 1;
   top: 0;
   left: 100%;
@@ -253,7 +259,7 @@ h1, h2, h3, h4, h5, h6 {
   .navbar .dropdown .dropdown ul {
     left: -90%;
   }
-  .navbar .dropdown .dropdown:hover > ul {
+  .navbar .dropdown .dropdown:hover>ul {
     left: -100%;
   }
 }
@@ -261,6 +267,7 @@ h1, h2, h3, h4, h5, h6 {
 /**
 * Mobile Navigation 
 */
+
 .mobile-nav-toggle {
   color: #413e66;
   font-size: 28px;
@@ -320,7 +327,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #413e66;
 }
 
-.navbar-mobile a:hover, .navbar-mobile .active, .navbar-mobile li:hover > a {
+.navbar-mobile a:hover, .navbar-mobile .active, .navbar-mobile li:hover>a {
   color: #1bb1dc;
 }
 
@@ -352,17 +359,18 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 12px;
 }
 
-.navbar-mobile .dropdown ul a:hover, .navbar-mobile .dropdown ul .active:hover, .navbar-mobile .dropdown ul li:hover > a {
+.navbar-mobile .dropdown ul a:hover, .navbar-mobile .dropdown ul .active:hover, .navbar-mobile .dropdown ul li:hover>a {
   color: #1bb1dc;
 }
 
-.navbar-mobile .dropdown > .dropdown-active {
+.navbar-mobile .dropdown>.dropdown-active {
   display: block;
 }
 
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
+
 #hero {
   width: 100%;
   height: 100vh;
@@ -438,12 +446,14 @@ h1, h2, h3, h4, h5, h6 {
 /*--------------------------------------------------------------
 # Sections
 --------------------------------------------------------------*/
+
 section {
   overflow: hidden;
 }
 
 /* Sections Header
 --------------------------------*/
+
 .section-header h3 {
   font-size: 36px;
   color: #413e66;
@@ -470,12 +480,14 @@ section {
 
 /* Section with background
 --------------------------------*/
+
 .section-bg {
   background: #f5f8fd;
 }
 
 /* About Us Section
 --------------------------------*/
+
 #about {
   padding: 80px 0;
 }
@@ -554,6 +566,7 @@ section {
 
 /* Services Section
 --------------------------------*/
+
 #services {
   padding: 60px 0 40px 0;
 }
@@ -612,6 +625,7 @@ section {
 
 /* Why Us Section
 --------------------------------*/
+
 #why-us {
   padding: 60px 0;
 }
@@ -668,6 +682,7 @@ section {
 
 /* Call To Action Section
 --------------------------------*/
+
 #call-to-action {
   background: #2d2b46;
   background-size: cover;
@@ -713,6 +728,7 @@ section {
 
 /* Features Section
 --------------------------------*/
+
 #features {
   padding: 80px 0;
 }
@@ -724,6 +740,7 @@ section {
 
 /* Portfolio Section
 --------------------------------*/
+
 #portfolio {
   padding: 60px 0;
 }
@@ -851,6 +868,7 @@ section {
 /*--------------------------------------------------------------
 # Portfolio Details
 --------------------------------------------------------------*/
+
 .portfolio-details {
   padding-top: 40px;
 }
@@ -895,7 +913,7 @@ section {
   font-size: 15px;
 }
 
-.portfolio-details .portfolio-info ul li + li {
+.portfolio-details .portfolio-info ul li+li {
   margin-top: 10px;
 }
 
@@ -915,6 +933,7 @@ section {
 
 /* Testimonials Section
 --------------------------------*/
+
 #testimonials {
   padding: 60px 0;
 }
@@ -994,6 +1013,7 @@ section {
 
 /* Team Section
 --------------------------------*/
+
 #team {
   padding: 60px 0;
 }
@@ -1062,6 +1082,7 @@ section {
 
 /* Clients Section
 --------------------------------*/
+
 #clients {
   padding: 60px 0;
 }
@@ -1094,6 +1115,7 @@ section {
 
 /* Pricing Section
 --------------------------------*/
+
 #pricing {
   padding: 80px 0;
 }
@@ -1207,6 +1229,7 @@ section {
 
 /* Frequently Asked Questions Section
 --------------------------------*/
+
 #faq {
   padding: 60px 0;
   overflow: hidden;
@@ -1273,6 +1296,7 @@ section {
 /*--------------------------------------------------------------
 # Breadcrumbs
 --------------------------------------------------------------*/
+
 .breadcrumbs {
   padding: 15px 0;
   background: #f9f9fb;
@@ -1295,11 +1319,11 @@ section {
   font-size: 14px;
 }
 
-.breadcrumbs ol li + li {
+.breadcrumbs ol li+li {
   padding-left: 10px;
 }
 
-.breadcrumbs ol li + li::before {
+.breadcrumbs ol li+li::before {
   display: inline-block;
   padding-right: 10px;
   color: #555186;
@@ -1309,6 +1333,7 @@ section {
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
+
 #footer {
   padding: 0 0 30px 0;
   font-size: 14px;
@@ -1460,7 +1485,7 @@ section {
   font-weight: 600;
 }
 
-#footer .php-email-form .error-message br + br {
+#footer .php-email-form .error-message br+br {
   margin-top: 25px;
 }
 

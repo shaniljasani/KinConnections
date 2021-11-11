@@ -19,6 +19,7 @@ from .db_wrapper import db_wrapper
 
 os.getenv("SENDGRID_API_KEY")
 
+
 class Email(Resource):
     def post(self, id):
         # ensure logged in
@@ -30,7 +31,8 @@ class Email(Resource):
         user_message = request.form.get('userMessage')
 
         currentConnector = db_wrapper.get_connector_by_id(id)
-        connector_name = (currentConnector['first_name'] + ' ' + currentConnector['last_name'])
+        connector_name = (
+            currentConnector['first_name'] + ' ' + currentConnector['last_name'])
         connector_email = (currentConnector['email'])
 
         sender_name = (session['first_name'] + ' ' + session['last_name'])
@@ -44,19 +46,22 @@ class Email(Resource):
     def __send_email_message(self, sender_name, sender_email, recipient_name, recipient_email, message_subject, message_body):
 
         # Create the plain-text and HTML version
-        text_string = sender_name + " would like to connect with you on KinConnections, subject: " + message_subject + " and message: " + message_body
-        html_string = self.__write_html_message(sender_name, sender_email, message_subject, message_body)
+        text_string = sender_name + " would like to connect with you on KinConnections, subject: " + \
+            message_subject + " and message: " + message_body
+        html_string = self.__write_html_message(
+            sender_name, sender_email, message_subject, message_body)
 
         # construct mail object
         message = Mail(
-            from_email = ("connections@kc.campconnect.co", "Kin Connections (Global Encounters)"),
-            to_emails = (recipient_email, recipient_name),
-            subject = "New Connection from " + sender_name,
-            plain_text_content = text_string,
-            html_content = str(html_string)
+            from_email=("connections@kc.campconnect.co",
+                        "Kin Connections (Global Encounters)"),
+            to_emails=(recipient_email, recipient_name),
+            subject="New Connection from " + sender_name,
+            plain_text_content=text_string,
+            html_content=str(html_string)
         )
         message.add_cc(("connections@kc.campconnect.co", "Kin Connections"))
-        message.reply_to = (sender_email,sender_name)
+        message.reply_to = (sender_email, sender_name)
 
         # send mail
         try:
