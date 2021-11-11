@@ -12,7 +12,7 @@ let professionalCategoryFilter = new Set();
 PROFESSIONAL_CATEGORIES_FILTER_SELECT.on("change", (e) => {
     professionalCategoryFilter.clear();
     for (const o of e.target.selectedOptions) {
-        professionalCategoryFilter.add(o.innerHTML);
+        professionalCategoryFilter.add(o.innerHTML.replace("&amp;", "&"));
     }
     filterConnectors();
 });
@@ -44,6 +44,25 @@ const filterBySearchString = (connectors) => {
     }
 
     return connectors.filter((c) => {
+        console.log(c.first_name + " " + c.first_name.toLowerCase().includes(searchString))
+        console.log("without ternary =>" + (
+            c.first_name.toLowerCase().includes(searchString) ||
+            c.last_name.toLowerCase().includes(searchString) ||
+            c.education.toLowerCase().includes(searchString) ||
+            c.bio.toLowerCase().includes(searchString) ||
+            c.location.toLowerCase().includes(searchString) ||
+            c.title.toLowerCase().includes(searchString) ||
+            c.region_current.toLowerCase().includes(searchString) 
+        ))
+        console.log(c.first_name.toLowerCase().includes(searchString) ||
+        c.last_name.toLowerCase().includes(searchString) ||
+        c.education ? c.education.toLowerCase().includes(searchString) : false ||
+        c.bio ? c.bio.toLowerCase().includes(searchString) : false ||
+        c.location ? c.location.toLowerCase().includes(searchString) : false ||
+        c.title ? c.title.toLowerCase().includes(searchString) : false ||
+        c.region_current ? c.region_current.toLowerCase().includes(searchString) : false)
+        console.log(c.location)
+        console.log(c.location ? c.location.toLowerCase().includes(searchString) : false)
         return (
             c.first_name.toLowerCase().includes(searchString) ||
             c.last_name.toLowerCase().includes(searchString) ||
@@ -84,6 +103,7 @@ const filterByProfessionalCategoryFilter = (connectors) => {
         if (c.professional_category) {
             let matchesProfessionalCategory = false;
             c.professional_category.forEach((l) => {
+                console.log(l);
                 if (professionalCategoryFilter.has(l)) {
                     matchesProfessionalCategory = true;
                 }
