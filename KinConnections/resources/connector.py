@@ -1,8 +1,13 @@
 import json
 
-from flask import Blueprint, Response, request, render_template, session, redirect, url_for
+from flask import (Blueprint, Response, redirect, render_template, request,
+                   session, url_for)
 from flask_restful import Resource
+
 from .db_wrapper import db_wrapper
+from .models import ConnectorExternalApiSchema
+
+connector_external_api_schema = ConnectorExternalApiSchema()
 
 
 class Connectors(Resource):
@@ -27,3 +32,16 @@ class Connector(Resource):
     def get(self, id):
         connector = db_wrapper.get_connector_by_id(id)
         return Response(render_template("connector.html", connector=connector), mimetype="text/html")
+
+class ConnectorExternalApi(Resource):
+    def post(self):
+        json_data = request.get_json(force=True)
+        if not json_data:
+           return {'message': 'No input data provided'}, 400
+
+        # Validate and deserialize input
+        data = connector_external_api_schema.load(json_data)
+        user = db_wrapper.add_connector(data)
+        if not user:
+            return {"message": "Error adding user to KinConnections"}, 500
+        return user

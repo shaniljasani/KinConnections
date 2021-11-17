@@ -9,7 +9,7 @@ import bcrypt
 from airtable import Airtable
 from dotenv import load_dotenv
 
-dotenv_path = join(dirname(__file__), '../../.env')
+dotenv_path = join(dirname(__file__), '../.env')
 load_dotenv(dotenv_path)
 
 airtable_connectees = Airtable(
@@ -75,6 +75,11 @@ class db_wrapper:
             airtable_connectees.delete(user_id.pop())
             return None
 
+        return user
+
+    def add_connector(data):
+        # surface error through flask
+        user = airtable_connectors.insert(data)
         return user
 
     # --------------------------------------------------------

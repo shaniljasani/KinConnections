@@ -1,4 +1,6 @@
-from resources.connector import Connector, Connectors, ConnectorsApi
+from resources.connector import (Connector, ConnectorExternalApi, Connectors,
+                                 ConnectorsApi)
+
 from .auth import Login, Logout, Signup, SignupConnectee
 from .email_wrapper import Email
 
@@ -13,3 +15,5 @@ def initialize_routes(api):
 
     api.add_resource(ConnectorsApi, '/api/connectors')
     api.add_resource(Email, '/api/send_email/<id>')
+
+    api.add_resource(ConnectorExternalApi, '/api/external/connector')
