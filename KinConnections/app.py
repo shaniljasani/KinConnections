@@ -9,10 +9,10 @@ from flask import (Flask, Response, redirect, render_template, request,
                    session, url_for)
 from flask_restful import Api
 
+from resources.routes import initialize_routes
+
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
-
-from resources.routes import initialize_routes
 
 app = Flask(__name__, static_url_path="/static")
 app.secret_key = os.getenv("APP_SECRET")
