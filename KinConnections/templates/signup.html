@@ -1,10 +1,10 @@
- {% extends "kc_template.html" %}
+{% extends "kc_template.html" %}
 {% block page_title %} Login {% endblock %}
 
 {% block breadcrumbs %}
 <ol>
-    <li><a href="/home">Home</a></li>
-    <li>Sign Up</li>
+  <li><a href="/home">Home</a></li>
+  <li>Sign Up</li>
 </ol>
 <h2>Sign Up for Kin Connections</h2>
 {% endblock %}
@@ -12,207 +12,225 @@
 {% block page_content %}
 {{ super() }}
 
- <!-- ======= Pricing Section Reuse for Sign Up ======= -->
- <section id="pricing" class="pricing section-bg wow fadeInUp">
+<!-- ======= Pricing Section Reuse for Sign Up ======= -->
+<section id="pricing" class="pricing section-bg wow fadeInUp">
 
-    <div class="container" data-aos="fade-up">
+  <div class="container" data-aos="fade-up">
 
-      <!-- <header class="section-header">
+    <!-- <header class="section-header">
         <h3>Login</h3>
         <p>Welcome to Kin Connections! Please login below or sign up for a new account.</p>
       </header> -->
 
-      <div class="row flex-items-xs-middle flex-items-xs-center">
+    <div class="row flex-items-xs-middle flex-items-xs-center">
 
-        <!-- Basic Plan  -->
-        <div class="" >
-          <div class="card">
-            <div class="card-block">
+      <!-- Basic Plan  -->
+      <div class="">
+        <div class="card">
+          <div class="card-block">
 
-                <h4 style="text-align: center;">{% if type is not none %}{{type}}{% endif %} Sign Up</h4>
-                <p>Welcome to Kin Connections! Please sign up for a new account.</p>
+            <h4 style="text-align: center;">{% if type is not none %}{{type}}{% endif %} Sign Up</h4>
+            <p>Welcome to Kin Connections! Please sign up for a new account.</p>
 
-                {% if type is none %}
-                <p style="margin: 0; padding: 0;">I would like to sign up as a...</p>
-                <a href="/signup/connectee"><button type="button" class="btn">Connectee</button></a>
-                <a href="/signup/connector"><button type="button" class="btn">Connector</button></a>
-                <br/>
-                <br/>
-                <p><a href="#kc-clarifications" class="portfolio-lightbox">What is the difference?</a></p>
+            {% if type is none %}
+            <p style="margin: 0; padding: 0;">I would like to sign up as a...</p>
+            <a href="/signup/connectee"><button type="button" class="btn">Connectee</button></a>
+            <a href="/signup/connector"><button type="button" class="btn">Connector</button></a>
+            <br />
+            <br />
+            <p><a href="#kc-clarifications" class="portfolio-lightbox">What is the difference?</a></p>
 
 
-                <div id="kc-clarifications" style="text-align: center; vertical-align: middle; display: none;">
-                  <br/>
-                  <br/>
-                  <br/>
-                  <br/>
-                  <h4>What is the difference between a connectee and connector?</h4>
-                  <p>A <strong>connectee</strong> is a young individual seeking to connect with someone who has experiences and insights to share - whether it's about career & educational goals, resilience & wellness, and/or finding your passion.</p>
-                  <p>A <strong>connector</strong> is a mentor who has experiences and insights to share, and wants to support youth in defining and achieving their goals. Their profiles are available on the website and can be filtered by field of work, language and location.</p>
-                </div>
-                {% endif %}
+            <div id="kc-clarifications" style="text-align: center; vertical-align: middle; display: none;">
+              <br />
+              <br />
+              <br />
+              <br />
+              <h4>What is the difference between a connectee and connector?</h4>
+              <p>A <strong>connectee</strong> is a young individual seeking to connect with someone who has experiences
+                and insights to share - whether it's about career & educational goals, resilience & wellness, and/or
+                finding your passion.</p>
+              <p>A <strong>connector</strong> is a mentor who has experiences and insights to share, and wants to
+                support youth in defining and achieving their goals. Their profiles are available on the website and can
+                be filtered by field of work, language and location.</p>
+            </div>
+            {% endif %}
 
-                {% if error is not none %}
-                    <div class="my-3">
-                        <div class="alert alert-danger" role="alert">
-                            Error! {{error}}
-                        </div>
-                    </div>
-                {% endif %}
-
-                {% if success is not none %}
-                    <div class="my-3">
-                        <div class="alert alert-success" role="alert">
-                            Success! {{success}}
-                        </div>
-                    </div>
-                {% endif %}
-
-                {% if type == "Connector" %}
-                <div class="row justify-content-center">
-                    <div class="col-lg-8 col-xs-8 col-sm-8 col-md-8">
-                      <p>Thank you for your interest in Kin Connections, an initiative of <a href="https://the.ismaili/globalencounters">Global Encounters</a>. <br/>
-                        As part of the mentor registration process, we request that your complete the application on the GE Portal. You will be asked to create an account after which you may apply for the "Kin Connections CONNECTOR" role.</p>
-                      <div class="text-center mt-4"><a href="https://globalencountersprogramme.org/?utm_source=KinConnections" class="btn">Go to GE Portal</a></div>
-                    </div>
-                </div>
-                {% endif %}
-
-                {% if type == "Connectee" %}
-                <div class="row justify-content-center">
-                  <div class="col-lg-5 col-xs-8 col-sm-8 col-md-8">
-                      <div class="form">
-                          <form method="post" role="form" class="form-signin text-center">
-
-                            <div class="form-group mt-3">
-                              <label for="input_email">What is your email? <br/> <i>*Your email will be used as your username*</i></label>
-                              <input type="email" class="form-control" name="input_email" id="input_email" placeholder="Email" required="">
-                            </div>
-
-                            <div class="form-group mt-3">
-                              <label for="input_email">Please create a strong password</label>
-                              <input type="password" class="form-control" name="input_password" id="input_password" placeholder="Password" required="">
-                            </div>
-
-                            <div class="form-group mt-3">
-                              <label for="input_email">What is your first name?</label>
-                              <input type="text" class="form-control" name="input_first_name" id="input_first_name" placeholder="First Name" required="">
-                            </div>
-
-                            <div class="form-group mt-3">
-                              <label for="input_email">What is your lastname or surname?</label>
-                              <input type="text" class="form-control" name="input_last_name" id="input_last_name" placeholder="Last Name" required="">
-                            </div>
-                            
-                            <div class="form-group mt-3">
-                              <label for="input_email">When is your birthday?</label>
-                              <input type="date" class="form-control" name="input_dob" id="input_dob" placeholder="Date of Birth" required="">
-                            </div>
-
-                            <div class="form-group mt-3"></div>
-                              <label for="region_current">Which region or jursidiction are you in?</label>
-                              <select id="region_current" class="form-control" name="input_region_current" required="">
-                                <option value="" disabled selected>Region</option>
-                                <option value="Afghanistan">Afghanistan</option>
-                                <option value="Australia/New Zealand">Australia/New Zealand</option>
-                                <option value="Bangladesh">Bangladesh</option>
-                                <option value="Canada">Canada</option>
-                                <option value="Democratic Republic of Congo">Democratic Republic of Congo</option>
-                                <option value="Far East">Far East</option>
-                                <option value="France">France</option>
-                                <option value="India">India</option>
-                                <option value="Kenya">Kenya</option>
-                                <option value="Madagascar">Madagascar</option>
-                                <option value="Mozambique">Mozambique</option>
-                                <option value="Pakistan">Pakistan</option>
-                                <option value="Portugal">Portugal</option>
-                                <option value="Syria">Syria</option>
-                                <option value="Tajikistan">Tajikistan</option>
-                                <option value="Tanzania">Tanzania</option>
-                                <option value="Uganda">Uganda</option>
-                                <option value="United Arab Emirates">United Arab Emirates</option>
-                                <option value="United Kingdom">United Kingdom</option>
-                                <option value="United States of America">United States of America</option>
-                              </select>
-                            </div>
-                            
-                            <div class="form-group mt-3">
-                              <label for="input_email">What is your gender?</label>
-                              <select id="gender" class="form-control" name="input_gender" id="input_gender" required="">
-                                <option value="" disabled selected>Gender</option>
-                                <option value="Female">Female</option>
-                                <option value="Male">Male</option>
-                                <option value="Non-Binary">Non-Binary</option>
-                                <option value="Other">Other</option>
-                                <option value="Prefer not to share">Prefer not to share</option>
-                              </select>
-                            </div>
-                            
-                            <div class="form-group mt-3">
-                              <label for="language">Which languages you are comfortable with speaking?</label><br/><br/>
-                              <div style="column-count: 2; text-align: left;">
-                                <fieldset>
-                                  <input type="checkbox" name="language" value="Arabic"> Arabic <br> 
-                                  <input type="checkbox" name="language" value="Dari"> Dari <br> 
-                                  <input type="checkbox" name="language" value="English"> English <br> 
-                                  <input type="checkbox" name="language" value="Farsi"> Farsi <br> 
-                                  <input type="checkbox" name="language" value="French"> French <br> 
-                                  <input type="checkbox" name="language" value="Gujarati"> Gujarati <br> 
-                                  <input type="checkbox" name="language" value="Kutchi"> Kutchi <br> 
-                                  <input type="checkbox" name="language" value="Portuguese"> Portuguese <br> 
-                                  <input type="checkbox" name="language" value="Russian"> Russian <br> 
-                                  <input type="checkbox" name="language" value="Spanish"> Spanish <br> 
-                                  <input type="checkbox" name="language" value="Urdu/Hindi"> Urdu/Hindi <br> 
-                                </fieldset>
-                              </div>
-                            </div>
-
-                            <div class="form-group mt-3">
-                              <label for="attended_ge">Have you attended Global Encounters or CONNECT?</label><br/>
-                              <input type="radio" name="attended_ge" value="yes" id="yes" onclick="javascript:displayGE();" required=""> Yes &nbsp;&nbsp; 
-                              <input type="radio" name="attended_ge" value="no" id="no" onclick="javascript:displayGE();" required=""> No <br>
-                            </div>
-
-                            <div class="form-group mt-3" style="display: none;" id="extra_ge_questions">
-                              <label for="input_ge_camp">Which programmes have you attended?</label><br/>
-                              <input type="text" class="form-control" name="input_ge_camp" id="input_ge_camp" placeholder="Year & Location (example: GE Pakistan 2017, CONNECT Winter 2020)">
-                            </div>
-
-                            <script>
-                              function displayGE() {
-                                if(document.getElementsByName("attended_ge")[0].checked){
-                                  document.getElementById("extra_ge_questions").style.display = 'block';
-                                }
-                                else document.getElementById("extra_ge_questions").style.display = 'none';
-                              }
-                            </script>
-
-                            <div class="form-group mt-3">
-                              <label for="input_is_ismaili">Are you a member of the Ismaili community?</label><br/>
-                              <input type="radio" name="input_is_ismaili" value="yes" id="yes" required=""> Yes &nbsp;&nbsp; 
-                              <input type="radio" name="input_is_ismaili" value="no" id="no" required=""> No <br>
-                            </div>
-
-                            <!-- TODO add Code of Conduct link -->
-                            <div class="form-group mt-3">
-                              <label for="input_is_ismaili">I agree to abide by the KinConnections <a href="https://google.com">Code of Conduct</a></label><br/>
-                              <input type="radio" name="input_acknowledgement" value="yes" id="yes" required=""> Yes &nbsp;&nbsp; 
-                              <input type="radio" name="input_acknowledgement" value="no" id="no" required=""> No <br>
-                            </div>
-                           
-                            <div class="text-center mt-4"><button type="submit" class="btn" title="Submit">Submit</button></div>
-                          </form>
-
-                        </div>
-                  </div>
+            {% if error is not none %}
+            <div class="my-3">
+              <div class="alert alert-danger" role="alert">
+                Error! {{error}}
               </div>
-                {% endif %}
+            </div>
+            {% endif %}
 
+            {% if success is not none %}
+            <div class="my-3">
+              <div class="alert alert-success" role="alert">
+                Success! {{success}}
+              </div>
+            </div>
+            {% endif %}
+
+            {% if type == "Connector" %}
+            <div class="row justify-content-center">
+              <div class="col-lg-8 col-xs-8 col-sm-8 col-md-8">
+                <p>Thank you for your interest in Kin Connections, an initiative of <a
+                    href="https://the.ismaili/globalencounters">Global Encounters</a>. <br />
+                  As part of the mentor registration process, we request that your complete the application on the GE
+                  Portal. You will be asked to create an account after which you may apply for the "Kin Connections
+                  CONNECTOR" role.</p>
+                <div class="text-center mt-4"><a href="https://globalencountersprogramme.org/?utm_source=KinConnections"
+                    class="btn">Go to GE Portal</a></div>
+              </div>
+            </div>
+            {% endif %}
+
+            {% if type == "Connectee" %}
+            <div class="row justify-content-center">
+              <div class="col-lg-5 col-xs-8 col-sm-8 col-md-8">
+                <div class="form">
+                  <form method="post" role="form" class="form-signin text-center">
+
+                    <div class="form-group mt-3">
+                      <label for="input_email">What is your email? <br /> <i>*Your email will be used as your
+                          username*</i></label>
+                      <input type="email" class="form-control" name="input_email" id="input_email" placeholder="Email"
+                        required="">
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <label for="input_email">Please create a strong password</label>
+                      <input type="password" class="form-control" name="input_password" id="input_password"
+                        placeholder="Password" required="">
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <label for="input_email">What is your first name?</label>
+                      <input type="text" class="form-control" name="input_first_name" id="input_first_name"
+                        placeholder="First Name" required="">
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <label for="input_email">What is your lastname or surname?</label>
+                      <input type="text" class="form-control" name="input_last_name" id="input_last_name"
+                        placeholder="Last Name" required="">
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <label for="input_email">When is your birthday?</label>
+                      <input type="date" class="form-control" name="input_dob" id="input_dob"
+                        placeholder="Date of Birth" required="">
+                    </div>
+
+                    <div class="form-group mt-3"></div>
+                    <label for="region_current">Which region or jursidiction are you in?</label>
+                    <select id="region_current" class="form-control" name="input_region_current" required="">
+                      <option value="" disabled selected>Region</option>
+                      <option value="Afghanistan">Afghanistan</option>
+                      <option value="Australia/New Zealand">Australia/New Zealand</option>
+                      <option value="Bangladesh">Bangladesh</option>
+                      <option value="Canada">Canada</option>
+                      <option value="Democratic Republic of Congo">Democratic Republic of Congo</option>
+                      <option value="Far East">Far East</option>
+                      <option value="France">France</option>
+                      <option value="India">India</option>
+                      <option value="Kenya">Kenya</option>
+                      <option value="Madagascar">Madagascar</option>
+                      <option value="Mozambique">Mozambique</option>
+                      <option value="Pakistan">Pakistan</option>
+                      <option value="Portugal">Portugal</option>
+                      <option value="Syria">Syria</option>
+                      <option value="Tajikistan">Tajikistan</option>
+                      <option value="Tanzania">Tanzania</option>
+                      <option value="Uganda">Uganda</option>
+                      <option value="United Arab Emirates">United Arab Emirates</option>
+                      <option value="United Kingdom">United Kingdom</option>
+                      <option value="United States of America">United States of America</option>
+                    </select>
+                </div>
+
+                <div class="form-group mt-3">
+                  <label for="input_email">What is your gender?</label>
+                  <select id="gender" class="form-control" name="input_gender" id="input_gender" required="">
+                    <option value="" disabled selected>Gender</option>
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                    <option value="Non-Binary">Non-Binary</option>
+                    <option value="Other">Other</option>
+                    <option value="Prefer not to share">Prefer not to share</option>
+                  </select>
+                </div>
+
+                <div class="form-group mt-3">
+                  <label for="language">Which languages you are comfortable with speaking?</label><br /><br />
+                  <div style="column-count: 2; text-align: left;">
+                    <fieldset>
+                      <input type="checkbox" name="language" value="Arabic"> Arabic <br>
+                      <input type="checkbox" name="language" value="Dari"> Dari <br>
+                      <input type="checkbox" name="language" value="English"> English <br>
+                      <input type="checkbox" name="language" value="Farsi"> Farsi <br>
+                      <input type="checkbox" name="language" value="French"> French <br>
+                      <input type="checkbox" name="language" value="Gujarati"> Gujarati <br>
+                      <input type="checkbox" name="language" value="Kutchi"> Kutchi <br>
+                      <input type="checkbox" name="language" value="Portuguese"> Portuguese <br>
+                      <input type="checkbox" name="language" value="Russian"> Russian <br>
+                      <input type="checkbox" name="language" value="Spanish"> Spanish <br>
+                      <input type="checkbox" name="language" value="Urdu/Hindi"> Urdu/Hindi <br>
+                    </fieldset>
+                  </div>
+                </div>
+
+                <div class="form-group mt-3">
+                  <label for="attended_ge">Have you attended Global Encounters or CONNECT?</label><br />
+                  <input type="radio" name="attended_ge" value="yes" id="yes" onclick="javascript:displayGE();"
+                    required=""> Yes &nbsp;&nbsp;
+                  <input type="radio" name="attended_ge" value="no" id="no" onclick="javascript:displayGE();"
+                    required=""> No <br>
+                </div>
+
+                <div class="form-group mt-3" style="display: none;" id="extra_ge_questions">
+                  <label for="input_ge_camp">Which programmes have you attended?</label><br />
+                  <input type="text" class="form-control" name="input_ge_camp" id="input_ge_camp"
+                    placeholder="Year & Location (example: GE Pakistan 2017, CONNECT Winter 2020)">
+                </div>
+
+                <script>
+                  function displayGE() {
+                    if (document.getElementsByName("attended_ge")[0].checked) {
+                      document.getElementById("extra_ge_questions").style.display = 'block';
+                    }
+                    else document.getElementById("extra_ge_questions").style.display = 'none';
+                  }
+                </script>
+
+                <div class="form-group mt-3">
+                  <label for="input_is_ismaili">Are you a member of the Ismaili community?</label><br />
+                  <input type="radio" name="input_is_ismaili" value="yes" id="yes" required=""> Yes &nbsp;&nbsp;
+                  <input type="radio" name="input_is_ismaili" value="no" id="no" required=""> No <br>
+                </div>
+
+                <!-- TODO add Code of Conduct link -->
+                <div class="form-group mt-3">
+                  <label for="input_is_ismaili">I agree to abide by the KinConnections <a href="https://google.com">Code
+                      of Conduct</a></label><br />
+                  <input type="radio" name="input_acknowledgement" value="yes" id="yes" required=""> Yes &nbsp;&nbsp;
+                  <input type="radio" name="input_acknowledgement" value="no" id="no" required=""> No <br>
+                </div>
+
+                <div class="text-center mt-4"><button type="submit" class="btn" title="Submit">Submit</button></div>
+                </form>
+
+              </div>
             </div>
           </div>
+          {% endif %}
+
         </div>
       </div>
     </div>
-  </section>
+  </div>
+  </div>
+</section>
 
 {% endblock %}
