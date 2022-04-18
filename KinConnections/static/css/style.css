@@ -456,6 +456,25 @@ h1, h2, h3, h4, h5, h6 {
   background: #95da79;
 }
 
+#hero .intro-info .btn-log-in, #hero .intro-info .btn-log-in {
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 10px 32px;
+  border-radius: 4px;
+  transition: 0.5s;
+  color: #fff;
+  background: #6c6c6c;
+  color: #fff;
+}
+
+#hero .intro-info .btn-log-in:hover, #hero .intro-info .btn-log-in:hover {
+  background: #8b8b8b;
+}
+
 /*--------------------------------------------------------------
 # Sections
 --------------------------------------------------------------*/
