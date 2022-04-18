@@ -1,0 +1,9 @@
+Flask
+python-dotenv
+airtable-python-wrapper
+bcrypt
+flask_restful
+marshmallow
+flask_marshmallow
+dominate
+sendgrid

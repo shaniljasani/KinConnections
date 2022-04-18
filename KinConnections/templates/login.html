@@ -3,8 +3,8 @@
 
 {% block breadcrumbs %}
 <ol>
-    <li><a href="/home">Home</a></li>
-    <li>Login</li>
+  <li><a href="/home">Home</a></li>
+  <li>Login</li>
 </ol>
 <h2>Login to Kin Connections</h2>
 {% endblock %}
@@ -12,72 +12,74 @@
 {% block page_content %}
 {{ super() }}
 
- <!-- ======= Pricing Section Reuse for Login ======= -->
- <section id="pricing" class="pricing section-bg wow fadeInUp">
+<!-- ======= Pricing Section Reuse for Login ======= -->
+<section id="pricing" class="pricing section-bg wow fadeInUp">
 
-    <div class="container" data-aos="fade-up">
+  <div class="container" data-aos="fade-up">
 
-      <!-- <header class="section-header">
+    <!-- <header class="section-header">
         <h3>Login</h3>
         <p>Welcome to Kin Connections! Please login below or sign up for a new account.</p>
       </header> -->
 
-      <div class="row flex-items-xs-middle flex-items-xs-center">
+    <div class="row flex-items-xs-middle flex-items-xs-center">
 
-        <!-- Basic Plan  -->
-        <div class="" >
-          <div class="card">
-            <div class="card-block">
+      <!-- Basic Plan  -->
+      <div class="">
+        <div class="card">
+          <div class="card-block">
 
-                <h4 style="text-align: center;">Login</h4>
-                <p>Welcome to Kin Connections! Please login below or sign up for a new account</p>
-  
-                {% if error is not none %}
-                    <div class="my-3">
-                        <div class="alert alert-danger" role="alert">
-                            Error: {{error}}
-                        </div>
-                    </div>
-                {% endif %}
+            <h4 style="text-align: center;">Login</h4>
+            <p>Welcome to Kin Connections! Please login below or sign up for a new account</p>
 
-                <div class="row justify-content-center">
-                    <div class="col-lg-4 col-md-8 ">
-                        <div class="form">
-    
-                            <form method="post" role="form" class="form-signin text-center">
-                              <div class="form-group mt-3">
-                                <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="Your Email" required="">
-                              </div>
-                              <div class="form-group mt-3">
-                                <input type="password" class="form-control" name="inputPassword" id="inputPassword" placeholder="Your Password" required="">
-                              </div>
-                             
-                              <div class="text-center mt-4"><button type="submit" class="btn" title="Submit">Submit</button></div>
-                            </form>
-
-
-                            <div class="mt-4">
-                                <div class="d-flex justify-content-center links">
-                                    Don't have an account? &nbsp;<a href="/signup" class="ml-2">Sign Up</a>
-                                </div>
-                            </div>
-              
-                          </div>
-                    </div>
-                </div>
-
-
-
-
+            {% if error is not none %}
+            <div class="my-3">
+              <div class="alert alert-danger" role="alert">
+                Error: {{error}}
+              </div>
             </div>
+            {% endif %}
+
+            <div class="row justify-content-center">
+              <div class="col-lg-4 col-md-8 ">
+                <div class="form">
+
+                  <form method="post" role="form" class="form-signin text-center">
+                    <div class="form-group mt-3">
+                      <input type="email" class="form-control" name="inputEmail" id="inputEmail"
+                        placeholder="Your Email" required="">
+                    </div>
+                    <div class="form-group mt-3">
+                      <input type="password" class="form-control" name="inputPassword" id="inputPassword"
+                        placeholder="Your Password" required="">
+                    </div>
+
+                    <div class="text-center mt-4"><button type="submit" class="btn" title="Submit">Log In</button></div>
+                  </form>
+
+
+                  <div class="mt-4">
+                    <div class="d-flex justify-content-center links">
+                      Don't have an account? &nbsp;<a href="/signup" class="ml-2">Sign Up</a>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+
+
+
           </div>
         </div>
-
-
       </div>
-    </div>
 
-  </section><!-- End Pricing Section -->
+
+    </div>
+  </div>
+
+</section><!-- End Pricing Section -->
 
 
 
